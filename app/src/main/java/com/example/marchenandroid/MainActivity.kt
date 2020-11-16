@@ -10,8 +10,4 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
-    fun Function(view: View){
-        startActivity(Intent(this, HomeActivity::class.java))
-        finish()
-    }
 }
