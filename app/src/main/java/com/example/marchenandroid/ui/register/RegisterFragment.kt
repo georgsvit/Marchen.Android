@@ -1,5 +1,6 @@
 package com.example.marchenandroid.ui.register
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.marchenandroid.HomeActivity
 import com.example.marchenandroid.R
 import com.example.marchenandroid.data.network.ApiStatus
 import com.example.marchenandroid.databinding.FragmentRegisterBinding
@@ -84,6 +86,8 @@ class RegisterFragment : Fragment() {
             when (newStatus) {
                 ApiStatus.ERROR -> Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
                 ApiStatus.DONE -> {
+                    startActivity(Intent(context, HomeActivity::class.java))
+                    activity?.finish()
                     // Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
                     //findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToAccountFragment())
                 }
