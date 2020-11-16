@@ -63,6 +63,7 @@ class LoginFragment : Fragment() {
                 ApiStatus.ERROR -> Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
                 ApiStatus.DONE -> {
                     startActivity(Intent(context, HomeActivity::class.java))
+                    activity?.finish()
                     // Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
                     //findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToAccountFragment())
                 }
