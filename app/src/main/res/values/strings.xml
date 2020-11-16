@@ -1,7 +1,15 @@
 <resources>
-    <string name="app_name">Marchen.Android</string>
+    <string name="app_name">Marchen</string>
     <string name="title_activity_home">MainActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="invalid_email">Not a valid email address</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="invalid_fullname">Not a valid full name</string>
+    <string name="invalid_role">Choose your role</string>
+    <string name="invalid_name">Not a valid name</string>
+    <string name="invalid_surname">Not a valid surname</string>
 </resources>
