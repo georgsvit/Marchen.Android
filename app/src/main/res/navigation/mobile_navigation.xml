@@ -22,9 +22,16 @@
         android:name="com.example.marchenandroid.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+
     <fragment
         android:id="@+id/navigation_profile"
         android:name="com.example.marchenandroid.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
-        tools:layout="@layout/fragment_profile"/>
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/navigation_children"
+        android:name="com.example.marchenandroid.ui.children.ChildrenFragment"
+        android:label="ChildrenFragment"
+        tools:layout="@layout/fragment_children" />
 </navigation>

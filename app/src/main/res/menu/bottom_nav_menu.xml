@@ -21,4 +21,9 @@
         android:icon="@drawable/ic_baseline_account_box"
         android:title="@string/title_profile"/>
 
+    <item
+        android:id="@+id/navigation_children"
+        android:icon="@drawable/ic_baseline_children"
+        android:title="@string/title_children"/>
+
 </menu>
