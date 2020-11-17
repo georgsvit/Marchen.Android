@@ -1,5 +1,6 @@
 package com.example.marchenandroid.ui.children
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.marchenandroid.R
 import com.example.marchenandroid.databinding.FragmentChildrenBinding
+import com.example.marchenandroid.ui.child.ChildActivity
+import com.example.marchenandroid.ui.child_form.ChildFormActivity
 
 class ChildrenFragment : Fragment() {
     private lateinit var viewModel: ChildrenViewModel
@@ -26,15 +29,23 @@ class ChildrenFragment : Fragment() {
 
         viewModel.navigateToSelectedChild.observe(viewLifecycleOwner, Observer {
             if (it != null) {
-                //this.findNavController().navigate(ChildrenFragmentDirections.actionChildrenFragmentToChildProfileFragment(it.Id))
+                viewModel.saveChildIdToSP(it.Id)
+                startActivity(Intent(context, ChildActivity::class.java))
                 viewModel.displayChildDetailsComplete()
             }
         })
 
         binding.createBtn.setOnClickListener {
-            //this.findNavController().navigate(ChildrenFragmentDirections.actionChildrenFragmentToChildFormFragment(0))
+            viewModel.saveChildIdToSP(0)
+            startActivity(Intent(context, ChildFormActivity::class.java))
         }
 
         return binding.root
+    }
+
+    override fun onResume() {
+        viewModel = ViewModelProvider(this).get(ChildrenViewModel::class.java)
+        viewModel.globalGetChildren()
+        super.onResume()
     }
 }

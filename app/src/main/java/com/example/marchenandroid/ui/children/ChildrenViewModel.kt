@@ -30,10 +30,18 @@ class ChildrenViewModel(application: Application) : AndroidViewModel(application
         sessionManager = SessionManager(getApplication())
         _token = sessionManager.fetchAuthToken()!!
 
-        getChildrenTales()
+        getChildren()
     }
 
-    private fun getChildrenTales() {
+    fun saveChildIdToSP(childId: Int) {
+        sessionManager.saveChildId(childId)
+    }
+
+    fun globalGetChildren() {
+        getChildren()
+    }
+
+    private fun getChildren() {
         viewModelScope.launch {
             _status.value = ApiStatus.LOADING
             val apiClient = ApiClient()

@@ -50,6 +50,10 @@ class LibraryViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
+    fun saveSelectedFairytaleToSP(fairytale: FairytaleGetResponse) {
+        sessionManager.saveFairytale(fairytale)
+    }
+
     fun displayFairytaleDetails(fairytale: FairytaleGetResponse) {
         _navigateToSelectedFairytale.value = fairytale
     }
