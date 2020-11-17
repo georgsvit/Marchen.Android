@@ -27,9 +27,9 @@ class ChildFormViewModel(application: Application) : AndroidViewModel(applicatio
     private val _status = MutableLiveData<ApiStatus>()
     val status: LiveData<ApiStatus> = _status
 
-    private lateinit var apiClient: ApiClient
-    private lateinit var sessionManager: SessionManager
-    private lateinit var _token: String
+    private var apiClient: ApiClient
+    private var sessionManager: SessionManager
+    private var _token: String
 
     init {
         apiClient = ApiClient()

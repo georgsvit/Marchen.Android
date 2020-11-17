@@ -32,7 +32,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
     val tokenDate: LiveData<Date>
         get() = _tokenDate
 
-    private lateinit var sessionManager: SessionManager
+    private var sessionManager: SessionManager
 
     init {
         _jwtTokenResponse.value = null

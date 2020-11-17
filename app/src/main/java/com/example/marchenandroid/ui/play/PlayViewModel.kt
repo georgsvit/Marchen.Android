@@ -42,8 +42,8 @@ class PlayViewModel(application: Application) : AndroidViewModel(
     private val _unit = MutableLiveData<UnitGetResponse>()
     val unit: LiveData<UnitGetResponse> = _unit
 
-    private lateinit var sessionManager: SessionManager
-    private lateinit var _token: String
+    private var sessionManager: SessionManager
+    private var _token: String
 
     init {
         sessionManager = SessionManager(getApplication())

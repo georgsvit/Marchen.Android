@@ -14,7 +14,7 @@ class ProfileViewModel(application: Application) : AndroidViewModel(application)
     private val _user = MutableLiveData<User>()
     val user: LiveData<User> = _user
 
-    private lateinit var sessionManager: SessionManager
+    private var sessionManager: SessionManager
 
     init {
         sessionManager = SessionManager(getApplication())
