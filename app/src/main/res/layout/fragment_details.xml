@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="fairytaleViewModel"
+            type="com.example.marchenandroid.ui.details.DetailsViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".fairytaleDetails.FairytaleDetailsFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/gradient_background">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:stretchColumns="1"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="0dp">
+
+                <TableRow android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:fontFamily="sans-serif-thin"
+                        android:gravity="left"
+                        android:padding="3dip"
+                        android:singleLine="false"
+                        android:text="@{fairytaleViewModel.selectedFairytale.name}"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:textColor="#000000"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+                </TableRow>
+
+                <TableRow android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:fontFamily="sans-serif-thin"
+                        android:gravity="start"
+                        android:singleLine="false"
+                        android:text="@{fairytaleViewModel.selectedFairytale.psychoType}"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textColor="#000000"
+                        android:textSize="24sp" />
+                </TableRow>
+
+                <TableRow android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:fontFamily="sans-serif-light"
+                        android:gravity="fill_horizontal"
+                        android:inputType="textMultiLine"
+                        android:padding="3dip"
+                        android:singleLine="false"
+                        android:text="@{fairytaleViewModel.selectedFairytale.contents}"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textColor="#000000"
+                        android:textSize="24sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ScrollView
+                        android:layout_width="399dp"
+                        android:layout_height="match_parent">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/saves_grid"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clipToPadding="false"
+                            android:padding="6dp"
+                            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:spanCount="1"
+                            tools:itemCount="16"
+                            tools:listitem="@layout/details_view_item"
+                            savepointsListData="@{fairytaleViewModel.saves}"/>
+                    </ScrollView>
+
+                </TableRow>
+            </TableLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
+</layout>
