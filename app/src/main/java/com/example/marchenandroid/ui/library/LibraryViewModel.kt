@@ -22,8 +22,8 @@ class LibraryViewModel(application: Application) : AndroidViewModel(application)
     private val _status = MutableLiveData<ApiStatus>()
     val status: LiveData<ApiStatus> = _status
 
-    private lateinit var sessionManager: SessionManager
-    private lateinit var _token: String
+    private var sessionManager: SessionManager
+    private var _token: String
 
     init {
         _tales.value = null

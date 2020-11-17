@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.marchenandroid.R
+import kotlinx.android.synthetic.main.fragment_details.*
 
 class ChildActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,6 +15,10 @@ class ChildActivity : AppCompatActivity() {
 
         val actionBar = supportActionBar
         actionBar?.setDisplayHomeAsUpEnabled(true)
+        if (actionBar != null) {
+            actionBar.title = "Child Profile"
+        }
+        val dividerItemDecoration =  DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
