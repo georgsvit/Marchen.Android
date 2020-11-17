@@ -49,6 +49,12 @@ class SessionManager(context: Context) {
         editor.apply()
     }
 
+    fun saveChildId(childId: Int) {
+        val editor = prefs.edit()
+        editor.putInt("childId", childId)
+        editor.apply()
+    }
+
     fun saveFairytale(fairytale: FairytaleGetResponse){
         val editor = prefs.edit()
         editor.putInt("fairytaleId", fairytale.Id)
@@ -56,6 +62,11 @@ class SessionManager(context: Context) {
         editor.putString("fairytaleContents", fairytale.Contents)
         editor.putString("fairytalePsychoType", fairytale.PsychoType)
         editor.putInt("fairytaleFirstUnitId", fairytale.FirstUnitId)
+        editor.apply()
+    }
+
+    fun removeChildId() {
+        val editor = prefs.edit().remove("childId")
         editor.apply()
     }
 
@@ -79,6 +90,10 @@ class SessionManager(context: Context) {
             TOKEN_DATE
         )
         editor.apply()
+    }
+
+    fun fetchChildId() : Int? {
+        return prefs.getInt("childId", 0)
     }
 
     fun fetchFairytale() : FairytaleGetResponse? {
