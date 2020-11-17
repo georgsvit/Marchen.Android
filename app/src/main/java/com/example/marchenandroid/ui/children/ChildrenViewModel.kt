@@ -10,6 +10,7 @@ import com.example.marchenandroid.data.SessionManager
 import com.example.marchenandroid.data.network.ApiClient
 import com.example.marchenandroid.data.network.ApiStatus
 import com.example.marchenandroid.data.network.dto.responses.ChildResponse
+import com.example.marchenandroid.data.network.dto.responses.FairytaleGetResponse
 import kotlinx.coroutines.launch
 
 class ChildrenViewModel(application: Application) : AndroidViewModel(application) {
@@ -31,6 +32,10 @@ class ChildrenViewModel(application: Application) : AndroidViewModel(application
         _token = sessionManager.fetchAuthToken()!!
 
         getChildrenTales()
+    }
+
+    fun saveChildIdToSP(childId: Int) {
+        sessionManager.saveChildId(childId)
     }
 
     private fun getChildrenTales() {
