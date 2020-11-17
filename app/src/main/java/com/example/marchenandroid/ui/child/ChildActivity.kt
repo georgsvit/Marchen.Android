@@ -15,6 +15,9 @@ class ChildActivity : AppCompatActivity() {
 
         val actionBar = supportActionBar
         actionBar?.setDisplayHomeAsUpEnabled(true)
+        if (actionBar != null) {
+            actionBar.title = "Child Profile"
+        }
         val dividerItemDecoration =  DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
     }
 
