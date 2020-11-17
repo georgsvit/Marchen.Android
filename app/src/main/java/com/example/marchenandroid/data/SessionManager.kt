@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.example.marchenandroid.R
 import com.example.marchenandroid.data.domain.User
+import com.example.marchenandroid.data.network.dto.responses.FairytaleGetResponse
 import com.example.marchenandroid.data.network.dto.responses.JWTTokenResponse
 import java.text.SimpleDateFormat
 import java.util.*
@@ -48,6 +49,26 @@ class SessionManager(context: Context) {
         editor.apply()
     }
 
+    fun saveFairytale(fairytale: FairytaleGetResponse){
+        val editor = prefs.edit()
+        editor.putInt("fairytaleId", fairytale.Id)
+        editor.putString("fairytaleName", fairytale.Name)
+        editor.putString("fairytaleContents", fairytale.Contents)
+        editor.putString("fairytalePsychoType", fairytale.PsychoType)
+        editor.putInt("fairytaleFirstUnitId", fairytale.FirstUnitId)
+        editor.apply()
+    }
+
+    fun removeFairytale() {
+        val editor = prefs.edit()
+        editor.remove("fairytaleId")
+        editor.remove("fairytaleName")
+        editor.remove("fairytaleContents")
+        editor.remove("fairytalePsychoType")
+        editor.remove("fairytaleFirstUnitId")
+        editor.apply()
+    }
+
     fun removeAuthToken(token: String) {
         val editor = prefs.edit().remove(USER_TOKEN)
         editor.apply()
@@ -58,6 +79,16 @@ class SessionManager(context: Context) {
             TOKEN_DATE
         )
         editor.apply()
+    }
+
+    fun fetchFairytale() : FairytaleGetResponse? {
+        return FairytaleGetResponse(
+                prefs.getInt("fairytaleId", -1),
+                prefs.getString("fairytaleName", null)!!,
+                prefs.getString("fairytaleContents", null)!!,
+                prefs.getString("fairytalePsychoType", null)!!,
+                prefs.getInt("fairytaleFirstUnitId", -1)
+        )
     }
 
     fun fetchAuthToken(): String? {
