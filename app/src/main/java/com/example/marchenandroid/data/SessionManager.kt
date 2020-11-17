@@ -49,6 +49,12 @@ class SessionManager(context: Context) {
         editor.apply()
     }
 
+    fun saveUnitId(unitId: Int) {
+        val editor = prefs.edit()
+        editor.putInt("unitId", unitId)
+        editor.apply()
+    }
+
     fun saveChildId(childId: Int) {
         val editor = prefs.edit()
         editor.putInt("childId", childId)
@@ -67,6 +73,11 @@ class SessionManager(context: Context) {
 
     fun removeChildId() {
         val editor = prefs.edit().remove("childId")
+        editor.apply()
+    }
+
+    fun removeUnitId() {
+        val editor = prefs.edit().remove("unitId")
         editor.apply()
     }
 
@@ -90,6 +101,10 @@ class SessionManager(context: Context) {
             TOKEN_DATE
         )
         editor.apply()
+    }
+
+    fun fetchUnitId() : Int? {
+        return prefs.getInt("unitId", 0)
     }
 
     fun fetchChildId() : Int? {
