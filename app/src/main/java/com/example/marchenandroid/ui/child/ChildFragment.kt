@@ -1,5 +1,6 @@
 package com.example.marchenandroid.ui.child
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.marchenandroid.R
 import com.example.marchenandroid.databinding.FragmentChildBinding
+import com.example.marchenandroid.ui.child_form.ChildFormActivity
 
 class ChildFragment : Fragment() {
     private lateinit var viewModel: ChildViewModel
@@ -25,7 +27,8 @@ class ChildFragment : Fragment() {
         })
 
         binding.editBtn.setOnClickListener {
-            //findNavController().navigate(ChildProfileFragmentDirections.actionChildProfileFragmentToChildFormFragment(viewModel.childId.value!!))
+            viewModel.saveChildIdToSP()
+            startActivity(Intent(context, ChildFormActivity::class.java))
         }
 
         binding.deleteBtn.setOnClickListener {
