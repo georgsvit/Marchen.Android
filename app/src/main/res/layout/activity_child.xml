@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.child.ChildActivity">
+    tools:context=".ui.child.ChildActivity"
+    android:background="@drawable/gradient_background">
 
     <fragment
         android:id="@+id/child_fragment"
@@ -12,4 +13,5 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

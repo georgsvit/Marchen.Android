@@ -6,7 +6,10 @@ import android.view.MenuItem
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.RecyclerView
 import com.example.marchenandroid.R
+import kotlinx.android.synthetic.main.fragment_details.*
 
 
 class DetailsActivity : AppCompatActivity() {
@@ -17,6 +20,15 @@ class DetailsActivity : AppCompatActivity() {
 
         val actionBar = supportActionBar
         actionBar?.setDisplayHomeAsUpEnabled(true)
+        if (actionBar != null) {
+            actionBar.title = "Details of the tale"
+        }
+        val dividerItemDecoration =  DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            dividerItemDecoration.setDrawable(getDrawable(R.drawable.recyclerview_divider)!!)
+        }
+        saves_grid.addItemDecoration(dividerItemDecoration)
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

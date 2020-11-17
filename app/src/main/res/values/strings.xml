@@ -16,4 +16,24 @@
     <string name="title_profile">Profile</string>
     <string name="title_children">Children</string>
     <string name="title_library">Fairytales</string>
+    <string name="create_btn">Create new</string>
+    <string name="string_name">Name</string>
+    <string name="string_surname">Surname</string>
+    <string name="save_btn">Save</string>
+    <string name="cancel_btn">Cancel</string>
+    <string name="add_child">Add child</string>
+    <string name="project_name">Märchen</string>
+    <string name="string_email">Email</string>
+    <string name="string_password">Password</string>
+    <string name="register_btn">Register</string>
+    <string name="login_btn">Login</string>
+    <string name="string_login_btn">Login</string>
+    <string name="img_descript">Marchen logo for refistration form</string>
+    <string name="name_with_dots">Name:</string>
+    <string name="string_reports">Reports</string>
+    <string name="edit_btn">Edit</string>
+    <string name="delete_btn">Delete</string>
+    <string name="string_prev">Prev</string>
+    <string name="next_btn">Next</string>
+    <string name="image_for_fairytale_slide_description">Image for fairytale slide</string>
 </resources>

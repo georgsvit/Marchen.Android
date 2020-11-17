@@ -7,7 +7,10 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.example.marchenandroid.databinding.ActivityHomeBinding
+import kotlinx.android.synthetic.main.fragment_details.*
+import androidx.recyclerview.widget.DividerItemDecoration
 
 class HomeActivity : AppCompatActivity() {
 
