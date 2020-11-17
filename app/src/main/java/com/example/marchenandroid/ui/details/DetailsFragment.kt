@@ -1,6 +1,7 @@
 package com.example.marchenandroid.ui.details
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.marchenandroid.R
 import com.example.marchenandroid.databinding.FragmentDetailsBinding
+import com.example.marchenandroid.ui.play.PlayActivity
 
 class DetailsFragment : Fragment() {
     private lateinit var viewModel: DetailsViewModel
@@ -43,11 +45,19 @@ class DetailsFragment : Fragment() {
 
         viewModel.selectedChildSave.observe(viewLifecycleOwner, Observer {
             if (it != null) {
-                //findNavController().navigate(FragmentDirections.actionFairytaleDetailsFragmentToFairytalePlayFragment(viewModel.selectedChildSave.value!!.UnitId, viewModel.selectedChildSave.value!!.ChildId))
-                //viewModel.navigationToSelectedChildSaveComplete()
+
+                viewModel.saveChildIdToSP()
+                viewModel.saveUnitIdToSP()
+
+                startActivity(Intent(context, PlayActivity::class.java))
             }
         })
 
         return binding.root
+    }
+
+    override fun onResume() {
+        viewModel.globalGetSaves()
+        super.onResume()
     }
 }

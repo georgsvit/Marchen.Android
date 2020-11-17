@@ -39,6 +39,18 @@ class DetailsViewModel(application: Application) : AndroidViewModel(application)
         getSaves()
     }
 
+    fun saveChildIdToSP() {
+        sessionManager.saveChildId(selectedChildSave.value!!.ChildId)
+    }
+
+    fun saveUnitIdToSP() {
+        sessionManager.saveUnitId(selectedChildSave.value!!.UnitId)
+    }
+
+    fun globalGetSaves() {
+        getSaves()
+    }
+
     private fun getSaves() {
         viewModelScope.launch {
             _status.value = ApiStatus.LOADING
