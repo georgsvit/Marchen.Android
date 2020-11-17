@@ -73,7 +73,7 @@ class PlayFragment  : Fragment() {
             if (binding.btnLayout.childCount > 0)  binding.btnLayout.removeAllViews()
 
             if (options.isNotEmpty()) {
-                for ((i,op) in options.withIndex()) {
+                for (op in options) {
                     val btn = Button(context)
                     btn.text = op.AnswerText
                     btn.isEnabled = true
@@ -88,7 +88,7 @@ class PlayFragment  : Fragment() {
                 btn.text = "Go to main menu"
                 btn.isEnabled = true
                 btn.setOnClickListener {
-                    //findNavController().navigate(FairytalePlayFragmentDirections.actionFairytalePlayFragmentToAccountFragment())
+                    requireActivity().finish()
                 }
                 btn.visibility = View.VISIBLE
                 binding.btnLayout.addView(btn)
