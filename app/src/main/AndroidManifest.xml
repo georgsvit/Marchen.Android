@@ -11,8 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MarchenAndroid">
-        <activity android:name=".ui.child.ChildActivity"></activity>
-        <activity android:name=".ui.details.DetailsActivity"></activity>
+        <activity android:name=".ui.child_form.ChildFormActivity"></activity>
+        <activity android:name=".ui.child.ChildActivity" />
+        <activity android:name=".ui.details.DetailsActivity" />
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home" />
