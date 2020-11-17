@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.marchenandroid.R
 import com.example.marchenandroid.databinding.FragmentChildBinding
 import com.example.marchenandroid.ui.child_form.ChildFormActivity
+import com.example.marchenandroid.ui.viewer.ViewerActivity
 
 class ChildFragment : Fragment() {
     private lateinit var viewModel: ChildViewModel
@@ -23,7 +24,8 @@ class ChildFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
         binding.reportsGrid.adapter = ChildGridAdapter(ChildGridAdapter.OnClickListener {
-            Toast.makeText(context, "Click", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(context, "Click", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(context, ViewerActivity::class.java).putExtra("reportId", it.Id))
         })
 
         binding.editBtn.setOnClickListener {
