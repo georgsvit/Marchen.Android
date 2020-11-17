@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView
 import com.example.marchenandroid.databinding.FragmentLibraryBinding
 import com.example.marchenandroid.ui.details.DetailsActivity
 
@@ -22,7 +23,6 @@ class LibraryFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.libraryViewModel = viewModel
         binding.talesGrid.adapter = LibraryGridAdapter(LibraryGridAdapter.OnClickListener { viewModel.displayFairytaleDetails(it) })
-
         viewModel.navigateToSelectedFairytale.observe(viewLifecycleOwner, Observer {
             if (it != null) {
                 viewModel.saveSelectedFairytaleToSP(it)
