@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="android.view.View"/>
         <variable
             name="accountViewModel"
             type="com.example.marchenandroid.ui.profile.ProfileViewModel" />
@@ -79,6 +80,17 @@
                 app:layout_constraintEnd_toEndOf="@+id/tableLayout"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/getIdBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Get Id"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/quit"
+                android:visibility="@{accountViewModel.userRole == 1 ? View.VISIBLE : View.GONE}"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
