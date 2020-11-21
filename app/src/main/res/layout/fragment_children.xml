@@ -24,11 +24,9 @@
                 android:layout_width="414dp"
                 android:layout_height="525dp"
                 android:layout_marginTop="40dp"
-                android:layout_marginBottom="60dp"
                 android:background="@drawable/gradient_background"
                 android:padding="12dp"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:layout_constraintBottom_toTopOf="@+id/createBtn"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -38,26 +36,16 @@
                 tools:itemCount="16"
                 tools:listitem="@layout/children_view_item" />
 
-            <Button
-                android:id="@+id/createBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="64dp"
-                android:text="@string/create_btn"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
-                app:layout_constraintStart_toStartOf="parent" />
-
             <ProgressBar
                 android:id="@+id/statusBar"
-                apiStatus="@{viewModel.status}"
                 style="?android:attr/progressBarStyle"
+                apiStatus="@{viewModel.status}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/createBtn"  />
+                app:layout_constraintTop_toBottomOf="@+id/children_grid" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </FrameLayout>
