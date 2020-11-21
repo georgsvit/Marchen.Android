@@ -19,6 +19,9 @@ class ChildrenViewModel(application: Application) : AndroidViewModel(application
     private val _children = MutableLiveData<List<ChildResponse>>()
     val children: LiveData<List<ChildResponse>> = _children
 
+    private val _userRole = MutableLiveData<Int>()
+    val userRole: LiveData<Int> = _userRole
+
     private val _status = MutableLiveData<ApiStatus>()
     val status: LiveData<ApiStatus> = _status
 
@@ -29,7 +32,7 @@ class ChildrenViewModel(application: Application) : AndroidViewModel(application
         _children.value = null
         sessionManager = SessionManager(getApplication())
         _token = sessionManager.fetchAuthToken()!!
-
+        _userRole.value = sessionManager.fetchUserRole()
         getChildren()
     }
 
