@@ -14,11 +14,19 @@ class ProfileViewModel(application: Application) : AndroidViewModel(application)
     private val _user = MutableLiveData<User>()
     val user: LiveData<User> = _user
 
+    private val _userRole = MutableLiveData<Int>()
+    val userRole: LiveData<Int> = _userRole
+
     private var sessionManager: SessionManager
 
     init {
         sessionManager = SessionManager(getApplication())
         _user.value = sessionManager.fetchUserData()
+        _userRole.value = sessionManager.fetchUserRole()!!
+    }
+
+    fun getId(): Int {
+        return _userRole.value!!
     }
 
     fun quit() {
