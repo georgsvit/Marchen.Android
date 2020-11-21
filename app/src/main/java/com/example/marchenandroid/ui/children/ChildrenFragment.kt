@@ -33,10 +33,6 @@ class ChildrenFragment : Fragment() {
             }
         })
 
-//        binding.createBtn.setOnClickListener {
-//
-//        }
-
         setHasOptionsMenu(true)
 
         return binding.root
