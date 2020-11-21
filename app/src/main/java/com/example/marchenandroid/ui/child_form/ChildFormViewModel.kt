@@ -60,7 +60,8 @@ class ChildFormViewModel(application: Application) : AndroidViewModel(applicatio
 
     fun onSaveClick(name: String, surname: String) {
         if (_childId.value == 0) {
-            val request = ChildRequest(name, surname)
+            //TODO: Remove fake avatar and teacher Ids
+            val request = ChildRequest(name, surname, 0, 0)
             registerChild(request)
         } else {
             //TODO: Save edited data
