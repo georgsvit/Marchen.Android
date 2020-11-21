@@ -11,7 +11,7 @@ import com.example.marchenandroid.data.SessionManager
 import com.example.marchenandroid.data.domain.Child
 import com.example.marchenandroid.data.network.ApiClient
 import com.example.marchenandroid.data.network.ApiStatus
-import com.example.marchenandroid.data.network.dto.requests.ChildRegisterRequest
+import com.example.marchenandroid.data.network.dto.requests.ChildRequest
 import kotlinx.coroutines.launch
 
 class ChildFormViewModel(application: Application) : AndroidViewModel(application) {
@@ -60,14 +60,14 @@ class ChildFormViewModel(application: Application) : AndroidViewModel(applicatio
 
     fun onSaveClick(name: String, surname: String) {
         if (_childId.value == 0) {
-            val request = ChildRegisterRequest(name, surname)
+            val request = ChildRequest(name, surname)
             registerChild(request)
         } else {
             //TODO: Save edited data
         }
     }
 
-    private fun registerChild(request: ChildRegisterRequest) {
+    private fun registerChild(request: ChildRequest) {
         viewModelScope.launch {
             _status.value = ApiStatus.LOADING
             try {
