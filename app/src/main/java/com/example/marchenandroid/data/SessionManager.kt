@@ -125,6 +125,10 @@ class SessionManager(context: Context) {
         return prefs.getString(USER_TOKEN, null)
     }
 
+    fun fetchUserRole(): Int? {
+        return prefs.getInt(USER_ROLE, 0)
+    }
+
     fun fetchUserData(): User? {
         return User(
             -1,
