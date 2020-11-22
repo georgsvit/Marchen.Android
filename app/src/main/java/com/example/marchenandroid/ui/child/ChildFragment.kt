@@ -18,6 +18,7 @@ import com.example.marchenandroid.R
 import com.example.marchenandroid.data.network.ApiStatus
 import com.example.marchenandroid.databinding.FragmentChildBinding
 import com.example.marchenandroid.ui.child_form.ChildFormActivity
+import com.example.marchenandroid.ui.reports.ReportsActivity
 import com.example.marchenandroid.ui.viewer.ViewerActivity
 import kotlinx.android.synthetic.main.fragment_child.*
 
@@ -30,9 +31,6 @@ class ChildFragment : Fragment() {
         viewModel = ChildViewModel(requireActivity().application)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
-        binding.reportsGrid.adapter = ChildGridAdapter(ChildGridAdapter.OnClickListener {
-            startActivity(Intent(context, ViewerActivity::class.java).putExtra("reportId", it.Id))
-        })
 
         binding.editBtn.setOnClickListener {
             viewModel.saveChildIdToSP()
@@ -51,6 +49,11 @@ class ChildFragment : Fragment() {
             dialogBuilder.setNegativeButton("Cancel") { _, _ -> }
 
             dialogBuilder.show()
+        }
+
+        binding.reportsBtn.setOnClickListener {
+            viewModel.saveChildIdToSP()
+            startActivity(Intent(context, ReportsActivity::class.java))
         }
 
         viewModel.deleteStatus.observe(viewLifecycleOwner, Observer { newStatus ->
