@@ -12,6 +12,7 @@
     <string name="invalid_role">Choose your role</string>
     <string name="invalid_name">Not a valid name</string>
     <string name="invalid_surname">Not a valid surname</string>
+    <string name="invalid_teacher">Not a valid teacher ID</string>
 
     <string name="title_profile">Profile</string>
     <string name="title_children">Children</string>
@@ -28,7 +29,7 @@
     <string name="register_btn">Register</string>
     <string name="login_btn">Login</string>
     <string name="string_login_btn">Login</string>
-    <string name="img_descript">Marchen logo for refistration form</string>
+    <string name="img_descript">Marchen logo for registration form</string>
     <string name="name_with_dots">Name:</string>
     <string name="string_reports">Reports</string>
     <string name="edit_btn">Edit</string>
