@@ -53,7 +53,7 @@ interface ApiService {
     suspend fun getReportDownloadLink(@Path("savepointId") childId: Int, @Header("Authorization") token: String) : ResponseBody//Call<ResponseBody>
 
     @DELETE(Constants.CHILDREN_URL + Constants.CHILD_ID_URL)
-    fun deleteChild(@Path("childId") childId: Int, @Header("Authorization") token: String) : ResponseBody
+    suspend fun deleteChild(@Path("childId") childId: Int, @Header("Authorization") token: String) : ResponseBody
 
     @DELETE(Constants.DELETE_URL)
     fun deleteUser(@Header("Authorization") token: String) : Call<ResponseBody>
