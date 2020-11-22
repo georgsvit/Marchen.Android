@@ -2,9 +2,7 @@ package com.example.marchenandroid.ui.child
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.net.toUri
@@ -14,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.example.marchenandroid.MainActivity
 import com.example.marchenandroid.R
 import com.example.marchenandroid.data.network.ApiStatus
 import com.example.marchenandroid.databinding.FragmentChildBinding
@@ -32,25 +31,6 @@ class ChildFragment : Fragment() {
         viewModel = ChildViewModel(requireActivity().application)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
-
-        binding.editBtn.setOnClickListener {
-            viewModel.saveChildIdToSP()
-            startActivity(Intent(context, ChildFormActivity::class.java))
-        }
-
-        binding.deleteBtn.setOnClickListener {
-            val dialogBuilder = AlertDialog.Builder(requireActivity())
-
-            dialogBuilder.setMessage("Do you want to delete this child?\nRemoved data couldn't be restored").setTitle("Delete?")
-
-            dialogBuilder.setPositiveButton("Delete") { _, _ ->
-                viewModel.delete()
-            }
-
-            dialogBuilder.setNegativeButton("Cancel") { _, _ -> }
-
-            dialogBuilder.show()
-        }
 
         binding.reportsBtn.setOnClickListener {
             viewModel.saveChildIdToSP()
@@ -91,7 +71,47 @@ class ChildFragment : Fragment() {
                     .into(avatar)
         })
 
+        setHasOptionsMenu(true)
+
         return binding.root
     }
 
+    private fun delete() {
+        val dialogBuilder = AlertDialog.Builder(requireActivity())
+
+        dialogBuilder.setMessage("Do you want to delete this child?\nRemoved data couldn't be restored").setTitle("Delete?")
+
+        dialogBuilder.setPositiveButton("Delete") { _, _ ->
+            viewModel.delete()
+            requireActivity().finish()
+            startActivity(Intent(context, MainActivity::class.java))
+        }
+
+        dialogBuilder.setNegativeButton("Cancel") { _, _ -> }
+
+        dialogBuilder.show()
+    }
+
+    private fun edit() {
+        viewModel.saveChildIdToSP()
+        startActivity(Intent(context, ChildFormActivity::class.java))
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.child_menu, menu)
+
+        if (viewModel == null) {
+            menu.findItem(R.id.deleteBtn)?.isVisible = false
+            menu.findItem(R.id.editBtn)?.isVisible = false
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.deleteBtn -> delete()
+            R.id.editBtn -> edit()
+        }
+        return super.onOptionsItemSelected(item)
+    }
 }

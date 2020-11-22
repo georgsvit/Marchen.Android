@@ -40,12 +40,11 @@ class ProfileFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.profile_menu, menu)
 
         if (viewModel == null) {
             menu.findItem(R.id.logout)?.isVisible = false
         }
-
-        inflater.inflate(R.menu.profile_menu, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
