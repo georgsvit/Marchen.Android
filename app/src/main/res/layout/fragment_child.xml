@@ -42,34 +42,6 @@
             app:layout_constraintTop_toBottomOf="@+id/nameTextView"
             app:layout_constraintVertical_bias="0.026" />
 
-        <Button
-            android:id="@+id/editBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="68dp"
-            android:layout_marginLeft="68dp"
-            android:text="@string/edit_btn"
-            android:visibility="@{viewModel.userRole == 1 ? View.GONE : View.VISIBLE}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/surnameTextView"
-            app:layout_constraintVertical_bias="0.174" />
-
-        <Button
-            android:id="@+id/deleteBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="70dp"
-            android:layout_marginRight="70dp"
-            android:text="@string/delete_btn"
-            android:visibility="@{viewModel.userRole == 1 ? View.GONE : View.VISIBLE}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/editBtn"
-            app:layout_constraintTop_toBottomOf="@+id/surnameTextView"
-            app:layout_constraintVertical_bias="0.176" />
-
         <ImageView
             android:id="@+id/avatar"
             android:layout_width="100dp"
