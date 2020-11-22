@@ -17,6 +17,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.marchenandroid.R
 import com.example.marchenandroid.data.network.ApiStatus
 import com.example.marchenandroid.databinding.FragmentChildBinding
+import com.example.marchenandroid.ui.awards.AwardsActivity
 import com.example.marchenandroid.ui.child_form.ChildFormActivity
 import com.example.marchenandroid.ui.reports.ReportsActivity
 import com.example.marchenandroid.ui.viewer.ViewerActivity
@@ -54,6 +55,11 @@ class ChildFragment : Fragment() {
         binding.reportsBtn.setOnClickListener {
             viewModel.saveChildIdToSP()
             startActivity(Intent(context, ReportsActivity::class.java))
+        }
+
+        binding.awardsBtn.setOnClickListener {
+            viewModel.saveChildIdToSP()
+            startActivity(Intent(context, AwardsActivity::class.java))
         }
 
         viewModel.deleteStatus.observe(viewLifecycleOwner, Observer { newStatus ->
