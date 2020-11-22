@@ -7,19 +7,14 @@ import android.os.ParcelFileDescriptor
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.viewModelScope
 import com.example.marchenandroid.R
 import com.example.marchenandroid.data.SessionManager
 import com.example.marchenandroid.data.network.ApiClient
-import com.example.marchenandroid.data.network.ApiStatus
-import com.example.marchenandroid.data.network.dto.requests.LoginRequest
 import kotlinx.coroutines.launch
 import okhttp3.ResponseBody
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
 import java.io.IOException
-import java.lang.Exception
-
 
 class ViewerActivity : AppCompatActivity() {
 
