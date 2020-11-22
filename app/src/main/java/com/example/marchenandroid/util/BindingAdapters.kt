@@ -1,13 +1,16 @@
 package com.example.marchenandroid.util
 
 import android.view.View
+import android.widget.ImageView
+import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.example.marchenandroid.R
 import com.example.marchenandroid.data.network.ApiStatus
-import com.example.marchenandroid.data.network.dto.responses.ChildReportResponse
-import com.example.marchenandroid.data.network.dto.responses.ChildResponse
-import com.example.marchenandroid.data.network.dto.responses.FairytaleGetResponse
-import com.example.marchenandroid.data.network.dto.responses.SavepointResponse
+import com.example.marchenandroid.data.network.dto.responses.*
+import com.example.marchenandroid.ui.awards.AwardsGridAdapter
 import com.example.marchenandroid.ui.children.ChildrenGridAdapter
 import com.example.marchenandroid.ui.details.DetailsGridAdapter
 import com.example.marchenandroid.ui.library.LibraryGridAdapter
@@ -35,6 +38,26 @@ fun bindSavepointsRecyclerView(recyclerView: RecyclerView, data: List<SavepointR
 fun bindReportsRecyclerView(recyclerView: RecyclerView, data: List<ChildReportResponse>?) {
     val adapter = recyclerView.adapter as ReportsGridAdapter
     adapter.submitList(data)
+}
+
+@BindingAdapter("awardsListData")
+fun bindAwardsRecyclerView(recyclerView: RecyclerView, data: List<AwardResponse>?) {
+    val adapter = recyclerView.adapter as AwardsGridAdapter
+    adapter.submitList(data)
+}
+
+@BindingAdapter("imageUrl")
+fun bindImage(imgView: ImageView, imgUrl: String?) {
+    imgUrl?.let {
+        val imgUri = imgUrl.toUri().buildUpon().scheme("https").build()
+        Glide.with(imgView.context)
+            .load(imgUri)
+            .apply(
+                RequestOptions()
+                .placeholder(R.drawable.loading_animation)
+                .error(R.drawable.ic_broken_image))
+            .into(imgView)
+    }
 }
 
 @BindingAdapter("apiStatus")
