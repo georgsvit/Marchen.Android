@@ -10,7 +10,6 @@ import com.example.marchenandroid.data.SessionManager
 import com.example.marchenandroid.data.network.ApiClient
 import com.example.marchenandroid.data.network.ApiStatus
 import com.example.marchenandroid.data.network.dto.responses.ChildReportResponse
-import com.example.marchenandroid.data.network.dto.responses.ChildResponse
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
@@ -23,9 +22,6 @@ class ReportsViewModel(application: Application) : AndroidViewModel(application)
 
     private val _status = MutableLiveData<ApiStatus>()
     val status: LiveData<ApiStatus> = _status
-
-    private val _deleteStatus = MutableLiveData<ApiStatus>()
-    val deleteStatus: LiveData<ApiStatus> = _deleteStatus
 
     private var apiClient: ApiClient
     private var sessionManager: SessionManager
