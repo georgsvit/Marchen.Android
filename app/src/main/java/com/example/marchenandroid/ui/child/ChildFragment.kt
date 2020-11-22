@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.net.toUri
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -14,6 +15,7 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.marchenandroid.R
+import com.example.marchenandroid.data.network.ApiStatus
 import com.example.marchenandroid.databinding.FragmentChildBinding
 import com.example.marchenandroid.ui.child_form.ChildFormActivity
 import com.example.marchenandroid.ui.viewer.ViewerActivity
@@ -29,7 +31,6 @@ class ChildFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
         binding.reportsGrid.adapter = ChildGridAdapter(ChildGridAdapter.OnClickListener {
-            //Toast.makeText(context, "Click", Toast.LENGTH_SHORT).show()
             startActivity(Intent(context, ViewerActivity::class.java).putExtra("reportId", it.Id))
         })
 
@@ -39,8 +40,31 @@ class ChildFragment : Fragment() {
         }
 
         binding.deleteBtn.setOnClickListener {
-            //TODO: Add OnDelete Action
+            val dialogBuilder = AlertDialog.Builder(requireActivity())
+
+            dialogBuilder.setMessage("Do you want to delete this child?\nRemoved data couldn't be restored").setTitle("Delete?")
+
+            dialogBuilder.setPositiveButton("Delete") { _, _ ->
+                viewModel.delete()
+            }
+
+            dialogBuilder.setNegativeButton("Cancel") { _, _ -> }
+
+            dialogBuilder.show()
         }
+
+        viewModel.deleteStatus.observe(viewLifecycleOwner, Observer { newStatus ->
+            when (newStatus) {
+                ApiStatus.ERROR -> {
+                    Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
+                }
+                ApiStatus.DONE -> {
+                    Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
+                    activity?.finish()
+                }
+                else -> Toast.makeText(context, "In a process", Toast.LENGTH_SHORT).show()
+            }
+        })
 
         viewModel.child.observe(viewLifecycleOwner, Observer {
             nameTextView.text = it.Firstname

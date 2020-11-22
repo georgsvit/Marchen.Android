@@ -30,6 +30,9 @@ class ChildViewModel(application: Application) : AndroidViewModel(application) {
     private val _status = MutableLiveData<ApiStatus>()
     val status: LiveData<ApiStatus> = _status
 
+    private val _deleteStatus = MutableLiveData<ApiStatus>()
+    val deleteStatus: LiveData<ApiStatus> = _deleteStatus
+
     private var apiClient: ApiClient
     private var sessionManager: SessionManager
     private var _token: String
@@ -80,11 +83,28 @@ class ChildViewModel(application: Application) : AndroidViewModel(application) {
             try {
                 _reports.value = apiClient.getApiService().getChildReports(childId, "Bearer $_token")
                 _status.value = ApiStatus.DONE
-                Log.i("API", "Procedure: GET Children Reports Value: ${_reports.value}")
+                Log.i("API", "Procedure: GET Child Reports Value: ${_reports.value}")
             } catch (e: Exception) {
-                Log.i("API", "Procedure: GET Children Reports Error: $e")
+                Log.i("API", "Procedure: GET Child Reports Error: $e")
                 _status.value = ApiStatus.ERROR
                 _reports.value = ArrayList()
+            }
+        }
+    }
+
+
+    fun delete() {
+        viewModelScope.launch {
+            _deleteStatus.value = ApiStatus.LOADING
+            val apiClient = ApiClient()
+
+            try {
+                val response = apiClient.getApiService().deleteChild(_childId.value!!, "Bearer $_token")
+                _deleteStatus.value = ApiStatus.DONE
+                Log.i("API", "Procedure: DELETE Child Value: ${_reports.value}")
+            } catch (e: Exception) {
+                Log.i("API", "Procedure: DELETE Child Error: $e")
+                _deleteStatus.value = ApiStatus.ERROR
             }
         }
     }
