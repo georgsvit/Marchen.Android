@@ -12,6 +12,11 @@ class ChildFormActivity : AppCompatActivity() {
         setContentView(R.layout.activity_child_form)
 
         val actionBar = supportActionBar
+
+        if (actionBar != null) {
+            actionBar.title = "Child Form"
+        }
+
         actionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
