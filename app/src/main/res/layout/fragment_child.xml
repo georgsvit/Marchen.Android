@@ -15,11 +15,6 @@
         android:layout_height="match_parent"
         android:background="@drawable/gradient_background">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -52,21 +47,6 @@
                     app:layout_constraintTop_toBottomOf="@+id/nameTextView"
                     app:layout_constraintVertical_bias="0.026" />
 
-                <TextView
-                    android:id="@+id/textView13"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="15dp"
-                    android:text="@string/string_reports"
-                    android:textColor="#000000"
-                    android:textSize="30sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.06"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/editBtn" />
-
                 <Button
                     android:id="@+id/editBtn"
                     android:layout_width="wrap_content"
@@ -74,11 +54,11 @@
                     android:layout_marginStart="70dp"
                     android:layout_marginLeft="70dp"
                     android:text="@string/edit_btn"
+                    android:visibility="@{viewModel.userRole == 1 ? View.GONE : View.VISIBLE}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/surnameTextView"
-                    app:layout_constraintVertical_bias="0.063"
-                    android:visibility="@{viewModel.userRole == 1 ? View.GONE : View.VISIBLE}"/>
+                    app:layout_constraintVertical_bias="0.063" />
 
                 <Button
                     android:id="@+id/deleteBtn"
@@ -87,33 +67,33 @@
                     android:layout_marginEnd="70dp"
                     android:layout_marginRight="70dp"
                     android:text="@string/delete_btn"
+                    android:visibility="@{viewModel.userRole == 1 ? View.GONE : View.VISIBLE}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toEndOf="@+id/editBtn"
                     app:layout_constraintTop_toBottomOf="@+id/surnameTextView"
-                    app:layout_constraintVertical_bias="0.063"
-                    android:visibility="@{viewModel.userRole == 1 ? View.GONE : View.VISIBLE}"/>
+                    app:layout_constraintVertical_bias="0.063" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/reports_grid"
-                    reportsListData="@{viewModel.reports}"
-                    android:layout_width="398dp"
-                    android:layout_height="464dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginRight="10dp"
-                    android:clipToPadding="false"
-                    android:padding="6dp"
-                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView13"
-                    app:spanCount="1"
-                    tools:itemCount="16"
-                    tools:listitem="@layout/child_view_item" />
+                <!--                <androidx.recyclerview.widget.RecyclerView-->
+                <!--                    android:id="@+id/reports_grid"-->
+                <!--                    reportsListData="@{viewModel.reports}"-->
+                <!--                    android:layout_width="398dp"-->
+                <!--                    android:layout_height="464dp"-->
+                <!--                    android:layout_marginStart="10dp"-->
+                <!--                    android:layout_marginLeft="10dp"-->
+                <!--                    android:layout_marginTop="15dp"-->
+                <!--                    android:layout_marginEnd="10dp"-->
+                <!--                    android:layout_marginRight="10dp"-->
+                <!--                    android:clipToPadding="false"-->
+                <!--                    android:padding="6dp"-->
+                <!--                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"-->
+                <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+                <!--                    app:layout_constraintStart_toStartOf="parent"-->
+                <!--                    app:layout_constraintTop_toBottomOf="@+id/textView13"-->
+                <!--                    app:spanCount="1"-->
+                <!--                    tools:itemCount="16"-->
+                <!--                    tools:listitem="@layout/child_view_item" />-->
 
                 <ImageView
                     android:id="@+id/avatar"
@@ -124,8 +104,20 @@
                     app:layout_constraintTop_toTopOf="parent"
                     tools:srcCompat="@tools:sample/avatars" />
 
+                <Button
+                    android:id="@+id/reportsBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Reports"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </LinearLayout>
+
     </ScrollView>
 
 </layout>
