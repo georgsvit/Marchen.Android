@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
@@ -15,48 +16,54 @@
         android:layout_marginTop="50dp"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:layout_marginBottom="20dp"
         app:cardCornerRadius="8dp">
-
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="6dp"
-            android:background="@drawable/gradient_for_library_background">
+            android:background="@drawable/gradient_for_library_background"
+            android:padding="6dp">
+
+            <ImageView
+                android:id="@+id/avatar"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="24dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars"
+                imageUrl="@{child.avatarURL}"/>
 
             <TextView
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
+                android:layout_marginLeft="60dp"
                 android:layout_marginBottom="6dp"
-                android:textStyle="bold"
+                android:text="@{child.firstname}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.038"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.114"
-                android:text="@{child.firstname}"
-                android:layout_marginStart="12dp" />
+                app:layout_constraintVertical_bias="0.114" />
 
             <TextView
                 android:id="@+id/textView7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="12dp"
                 android:layout_below="@id/textView6"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="12dp"
+                android:text="@{child.lastname}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.038"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView6"
-                android:text="@{child.lastname}"/>
+                app:layout_constraintTop_toBottomOf="@+id/textView6" />
         </RelativeLayout>
-
-
     </androidx.cardview.widget.CardView>
 </layout>
