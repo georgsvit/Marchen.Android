@@ -10,12 +10,16 @@ import com.example.marchenandroid.data.SessionManager
 import com.example.marchenandroid.data.network.ApiClient
 import com.example.marchenandroid.data.network.ApiStatus
 import com.example.marchenandroid.data.network.dto.responses.ChildReportResponse
+import com.example.marchenandroid.data.network.dto.responses.ChildResponse
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
 class ChildViewModel(application: Application) : AndroidViewModel(application) {
     private val _childId = MutableLiveData<Int>()
     val childId: LiveData<Int> = _childId
+
+    private val _child = MutableLiveData<ChildResponse>()
+    val child: LiveData<ChildResponse> = _child
 
     private val _reports = MutableLiveData<List<ChildReportResponse>>()
     val reports: LiveData<List<ChildReportResponse>> = _reports
@@ -49,7 +53,18 @@ class ChildViewModel(application: Application) : AndroidViewModel(application) {
 
     private fun getChild(childId: Int) {
         viewModelScope.launch {
-            // TODO: Get child data
+            _status.value = ApiStatus.LOADING
+            val apiClient = ApiClient()
+
+            try {
+                _child.value = apiClient.getApiService().getChildById(childId, "Bearer $_token")
+                _status.value = ApiStatus.DONE
+                Log.i("API", "Procedure: GET Child Value: ${_reports.value}")
+            } catch (e: Exception) {
+                Log.i("API", "Procedure: GET Child Error: $e")
+                _status.value = ApiStatus.ERROR
+                _child.value = ChildResponse(0, "undefined", "undefined", "undefined")
+            }
         }
     }
 
