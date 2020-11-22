@@ -8,10 +8,10 @@ import com.example.marchenandroid.data.network.dto.responses.ChildReportResponse
 import com.example.marchenandroid.data.network.dto.responses.ChildResponse
 import com.example.marchenandroid.data.network.dto.responses.FairytaleGetResponse
 import com.example.marchenandroid.data.network.dto.responses.SavepointResponse
-import com.example.marchenandroid.ui.child.ChildGridAdapter
 import com.example.marchenandroid.ui.children.ChildrenGridAdapter
 import com.example.marchenandroid.ui.details.DetailsGridAdapter
 import com.example.marchenandroid.ui.library.LibraryGridAdapter
+import com.example.marchenandroid.ui.reports.ReportsGridAdapter
 
 @BindingAdapter("childrenListData")
 fun bindChildrenRecyclerView(recyclerView: RecyclerView, data: List<ChildResponse>?) {
@@ -33,7 +33,7 @@ fun bindSavepointsRecyclerView(recyclerView: RecyclerView, data: List<SavepointR
 
 @BindingAdapter("reportsListData")
 fun bindReportsRecyclerView(recyclerView: RecyclerView, data: List<ChildReportResponse>?) {
-    val adapter = recyclerView.adapter as ChildGridAdapter
+    val adapter = recyclerView.adapter as ReportsGridAdapter
     adapter.submitList(data)
 }
 
