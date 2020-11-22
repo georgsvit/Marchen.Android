@@ -21,6 +21,9 @@ class ChildViewModel(application: Application) : AndroidViewModel(application) {
     private val _child = MutableLiveData<ChildResponse>()
     val child: LiveData<ChildResponse> = _child
 
+    private val _userRole = MutableLiveData<Int>()
+    val userRole: LiveData<Int> = _userRole
+
     private val _reports = MutableLiveData<List<ChildReportResponse>>()
     val reports: LiveData<List<ChildReportResponse>> = _reports
 
@@ -36,6 +39,7 @@ class ChildViewModel(application: Application) : AndroidViewModel(application) {
         apiClient = ApiClient()
         sessionManager = SessionManager(getApplication())
         _token = sessionManager.fetchAuthToken()!!
+        _userRole.value = sessionManager.fetchUserRole()
 
         _childId.value = sessionManager.fetchChildId()!!
 
