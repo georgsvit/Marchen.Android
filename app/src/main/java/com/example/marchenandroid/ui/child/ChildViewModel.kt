@@ -53,6 +53,10 @@ class ChildViewModel(application: Application) : AndroidViewModel(application) {
         sessionManager.saveChildId(_childId.value!!)
     }
 
+    fun globalGetChild() {
+        getChild(_childId.value!!)
+    }
+
     private fun getChild(childId: Int) {
         viewModelScope.launch {
             _status.value = ApiStatus.LOADING
@@ -65,7 +69,7 @@ class ChildViewModel(application: Application) : AndroidViewModel(application) {
             } catch (e: Exception) {
                 Log.i("API", "Procedure: GET Child Error: $e")
                 _status.value = ApiStatus.ERROR
-                _child.value = ChildResponse(0, "undefined", "undefined", "undefined")
+                _child.value = ChildResponse(-1, "undefined", "undefined", "undefined", -1)
             }
         }
     }

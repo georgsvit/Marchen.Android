@@ -9,6 +9,7 @@ import androidx.core.net.toUri
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -18,6 +19,7 @@ import com.example.marchenandroid.data.network.ApiStatus
 import com.example.marchenandroid.databinding.FragmentChildBinding
 import com.example.marchenandroid.ui.awards.AwardsActivity
 import com.example.marchenandroid.ui.child_form.ChildFormActivity
+import com.example.marchenandroid.ui.children.ChildrenViewModel
 import com.example.marchenandroid.ui.reports.ReportsActivity
 import com.example.marchenandroid.ui.viewer.ViewerActivity
 import kotlinx.android.synthetic.main.fragment_child.*
@@ -61,7 +63,7 @@ class ChildFragment : Fragment() {
 
             //TODO: Set normal avatar default picture
             if (it.AvatarURL == null) {
-                it.AvatarURL = "https://upload.wikimedia.org/wikipedia/commons/e/ec/Dana_White_-_London_2015_%28cropped%29.jpg"
+                it.AvatarURL = "https://1.bp.blogspot.com/_16lyaJiGldI/TBekxqet-JI/AAAAAAAAAis/jTGCN4Wfo8Q/s1600/smile.jpg"
             }
 
             val imgUri = it.AvatarURL.toUri().buildUpon().scheme("https").build()
@@ -71,7 +73,9 @@ class ChildFragment : Fragment() {
                     .into(avatar)
         })
 
-        setHasOptionsMenu(true)
+        if (viewModel.userRole.value == 2) {
+            setHasOptionsMenu(true)
+        }
 
         return binding.root
     }
@@ -113,5 +117,10 @@ class ChildFragment : Fragment() {
             R.id.editBtn -> edit()
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onResume() {
+        viewModel.globalGetChild()
+        super.onResume()
     }
 }
