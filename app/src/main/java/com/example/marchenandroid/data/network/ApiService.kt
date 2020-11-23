@@ -19,7 +19,7 @@ interface ApiService {
     @POST(Constants.CHILDREN_URL)
     suspend fun childRegister(@Header("Authorization") token: String, @Body request: ChildRequest) : ResponseBody
 
-    @POST(Constants.CHILDREN_URL + Constants.CHILD_ID_URL)
+    @PATCH(Constants.CHILDREN_URL + Constants.CHILD_ID_URL)
     suspend fun childEdit(@Path("childId") childId: Int, @Header("Authorization") token: String, @Body request: ChildRequest) : ResponseBody
 
     @GET(Constants.TEACHER_ID_URL)
