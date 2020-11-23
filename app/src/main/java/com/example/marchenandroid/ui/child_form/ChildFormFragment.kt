@@ -1,6 +1,8 @@
 package com.example.marchenandroid.ui.child_form
 
 import android.os.Bundle
+import android.text.Editable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,20 +22,29 @@ class ChildFormFragment : Fragment() {
         val binding: FragmentChildFormBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_child_form, container, false)
         val name = binding.nameField
         val surname = binding.surnameField
+        val teacher = binding.teacherIdField
 
         viewModel = ChildFormViewModel(requireActivity().application)
         binding.childFormViewModel = viewModel
 
         name.doAfterTextChanged {
-            viewModel.registerDataChanged(name.text.toString(), surname.text.toString())
+            if (surname.text.toString() != "") {
+                viewModel.dataChanged(name.text.toString(), surname.text.toString())//Integer.parseInt(teacher.text.toString()))
+            }
         }
 
         surname.doAfterTextChanged {
-            viewModel.registerDataChanged(name.text.toString(), surname.text.toString())
+            if (name.text.toString() != "") {
+                viewModel.dataChanged(name.text.toString(), surname.text.toString())//Integer.parseInt(teacher.text.toString()))
+            }
+        }
+
+        teacher.doAfterTextChanged {
+            viewModel.dataChanged(name.text.toString(), surname.text.toString())//Integer.parseInt(teacher.text.toString()))
         }
 
         binding.saveBtn.setOnClickListener {
-            viewModel.onSaveClick(name.text.toString(), surname.text.toString())
+            viewModel.onSaveClick(name.text.toString(), surname.text.toString(), Integer.parseInt(teacher.text.toString()))
         }
 
         binding.cancelBtn.setOnClickListener {
@@ -55,7 +66,13 @@ class ChildFormFragment : Fragment() {
             }
         })
 
-        viewModel.registerFormState.observe(viewLifecycleOwner, Observer { formState ->
+        viewModel.child.observe(viewLifecycleOwner, Observer {
+            name.setText(it.Firstname)
+            surname.setText(it.Lastname)
+            teacher.setText(it.TeacherId.toString())
+        })
+
+        viewModel.formState.observe(viewLifecycleOwner, Observer { formState ->
             binding.saveBtn.isEnabled = formState.isDataValid
             if (formState.nameError != null) {
                 name.error = getString(formState.nameError)

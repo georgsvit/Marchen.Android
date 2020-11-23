@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View"/>
         <variable
             name="childFormViewModel"
             type="com.example.marchenandroid.ui.child_form.ChildFormViewModel" />
@@ -19,7 +20,6 @@
             android:layout_height="match_parent"
             android:background="@drawable/gradient_background">
 
-
             <EditText
                 android:id="@+id/nameField"
                 android:layout_width="wrap_content"
@@ -30,6 +30,7 @@
                 android:importantForAutofill="no"
                 android:inputType="textPersonName"
                 android:padding="16dp"
+
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.497"
@@ -46,6 +47,7 @@
                 android:padding="16dp"
                 android:hint="@string/string_surname"
                 android:inputType="textPersonName"
+
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.497"
@@ -96,12 +98,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="104dp"
-                android:text="@string/add_child"
+
                 android:textSize="48sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.471"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/teacherIdField"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                app:layout_constraintBottom_toTopOf="@+id/saveBtn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/surnameField" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </FrameLayout>
