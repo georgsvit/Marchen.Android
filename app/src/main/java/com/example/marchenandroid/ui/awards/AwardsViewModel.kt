@@ -49,7 +49,7 @@ class AwardsViewModel(application: Application) : AndroidViewModel(application) 
             try {
                 _awards.value = apiClient.getApiService().getChildAwards(childId, "Bearer $_token")
                 for (a in _awards.value!!) {
-                    a.AwardURL = "https://upload.wikimedia.org/wikipedia/commons/e/ec/Dana_White_-_London_2015_%28cropped%29.jpg"
+                    a.AwardURL = "https://1.bp.blogspot.com/_16lyaJiGldI/TBekxqet-JI/AAAAAAAAAis/jTGCN4Wfo8Q/s1600/smile.jpg"
                 }
                 _status.value = ApiStatus.DONE
                 Log.i("API", "Procedure: GET Child Awards Value: ${_awards.value}")
