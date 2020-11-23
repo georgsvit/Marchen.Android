@@ -23,7 +23,7 @@ class ProfileFragment : Fragment() {
         binding.accountViewModel = viewModel
 
         binding.getIdBtn.setOnClickListener {
-            val id = viewModel.getId()
+            val id = viewModel.getTeacherId()
             Toast.makeText(context, "Your Id: $id", Toast.LENGTH_LONG).show()
         }
 
