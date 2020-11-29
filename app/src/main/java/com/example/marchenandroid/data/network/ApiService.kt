@@ -22,6 +22,9 @@ interface ApiService {
     @PATCH(Constants.CHILDREN_URL + Constants.CHILD_ID_URL)
     suspend fun childEdit(@Path("childId") childId: Int, @Header("Authorization") token: String, @Body request: ChildRequest) : ResponseBody
 
+    @PATCH(Constants.CHILDREN_URL + Constants.CHILD_ID_URL + Constants.DELETE_FOR_GROUP_URL)
+    suspend fun deleteChildFromGroup(@Path("childId") childId: Int, @Header("Authorization") token: String) : ResponseBody
+
     @GET(Constants.TEACHER_ID_URL)
     suspend fun getTeacherId(@Header("Authorization") token: String) : Int
 
@@ -50,13 +53,13 @@ interface ApiService {
     suspend fun getChildAwards(@Path("childId") childId: Int, @Header("Authorization") token: String) : List<AwardResponse>
 
     @GET(Constants.REPORT_DOWNLOAD_URL)
-    suspend fun getReportDownloadLink(@Path("savepointId") childId: Int, @Header("Authorization") token: String) : ResponseBody//Call<ResponseBody>
+    suspend fun getReportDownloadLink(@Path("savepointId") childId: Int, @Header("Authorization") token: String) : ResponseBody
+
+    @GET(Constants.FAIRYTALE_AWARD)
+    suspend fun getFairytaleAward(@Path("fairytaleId") fairytaleId: Int, @Header("Authorization") token: String) : AwardResponse
 
     @DELETE(Constants.CHILDREN_URL + Constants.CHILD_ID_URL)
     suspend fun deleteChild(@Path("childId") childId: Int, @Header("Authorization") token: String) : ResponseBody
-
-    @PATCH(Constants.CHILDREN_URL + Constants.CHILD_ID_URL + Constants.DELETE_FOR_GROUP_URL)
-    suspend fun deleteChildFromGroup(@Path("childId") childId: Int, @Header("Authorization") token: String) : ResponseBody
 
     @DELETE(Constants.DELETE_URL)
     fun deleteUser(@Header("Authorization") token: String) : Call<ResponseBody>
