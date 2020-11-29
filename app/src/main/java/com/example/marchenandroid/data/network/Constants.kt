@@ -15,4 +15,5 @@ object Constants {
     const val CHILD_ID_URL = "/{childId}"
     const val AWARDS_URL = "/awards"
     const val AVATARS_URL = "/avatars"
+    const val DELETE_FOR_GROUP_URL = "/removeFromGroup"
 }
