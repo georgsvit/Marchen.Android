@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.core.net.toUri
@@ -38,11 +39,7 @@ class PlayFragment  : Fragment() {
         viewModel.slide.observe(viewLifecycleOwner, Observer {
             text.text = it.Content
             if (it.ImagePath != null) {
-                val imgUri = it.ImagePath.toUri().buildUpon().scheme("https").build()
-                Glide.with(img.context)
-                    .load(imgUri)
-                    .apply(RequestOptions().placeholder(R.drawable.loading_animation).error(R.drawable.ic_broken_image))
-                    .into(img)
+                getImage(it.ImagePath, img)
             }
         })
 
@@ -84,6 +81,7 @@ class PlayFragment  : Fragment() {
                     binding.btnLayout.addView(btn)
                 }
             } else {
+                getImage(viewModel.award.value!!.AwardURL, img)
                 val btn = Button(context)
                 btn.text = "Go to main menu"
                 btn.isEnabled = true
@@ -97,8 +95,13 @@ class PlayFragment  : Fragment() {
 
         viewModel.question.observe(viewLifecycleOwner, Observer { newState ->
             if (newState) {
+                getImage(viewModel.award.value!!.AwardURL, img)
                 text.visibility = View.GONE
-                img.visibility = View.GONE
+
+                if (viewModel.unit.value!!.Options.isNotEmpty()) {
+                    img.visibility = View.GONE
+                }
+
                 binding.question.visibility = View.VISIBLE
                 binding.btnLayout.visibility = View.VISIBLE
             } else {
@@ -138,5 +141,14 @@ class PlayFragment  : Fragment() {
 
         binding.viewModel = viewModel
         return binding.root
+    }
+
+
+    private fun getImage(path: String, img: ImageView) {
+        val imgUri = path.toUri().buildUpon().scheme("https").build()
+        Glide.with(img.context)
+                .load(imgUri)
+                .apply(RequestOptions().placeholder(R.drawable.loading_animation).error(R.drawable.ic_broken_image))
+                .into(img)
     }
 }
