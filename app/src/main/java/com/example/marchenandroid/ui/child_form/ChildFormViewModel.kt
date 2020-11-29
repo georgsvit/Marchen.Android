@@ -2,6 +2,7 @@ package com.example.marchenandroid.ui.child_form
 
 import android.app.Application
 import android.util.Log
+import androidx.core.text.isDigitsOnly
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -48,13 +49,16 @@ class ChildFormViewModel(application: Application) : AndroidViewModel(applicatio
         _formState.value = ChildFormState(isDataValid = true)
     }
 
-    fun dataChanged(name: String, surname: String) {
+    fun dataChanged(name: String, surname: String, teacherId: String) {
         when {
             name == "" -> {
                 _formState.value = ChildFormState(nameError = R.string.invalid_name)
             }
             surname == "" -> {
                 _formState.value = ChildFormState(surnameError = R.string.invalid_surname)
+            }
+            !teacherId.isDigitsOnly() -> {
+                _formState.value = ChildFormState(teacherError = R.string.invalid_teacher)
             }
             else -> {
                 _formState.value = ChildFormState(isDataValid = true)
