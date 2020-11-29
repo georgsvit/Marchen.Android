@@ -73,9 +73,7 @@ class ChildFragment : Fragment() {
                     .into(avatar)
         })
 
-        if (viewModel.userRole.value == 2) {
-            setHasOptionsMenu(true)
-        }
+        setHasOptionsMenu(true)
 
         return binding.root
     }
@@ -83,12 +81,22 @@ class ChildFragment : Fragment() {
     private fun delete() {
         val dialogBuilder = AlertDialog.Builder(requireActivity())
 
-        dialogBuilder.setMessage("Do you want to delete this child?\nRemoved data couldn't be restored").setTitle("Delete?")
+        if (viewModel.userRole.value == 1) {
+            dialogBuilder.setMessage("Do you want to remove this child from group?").setTitle("Remove?")
 
-        dialogBuilder.setPositiveButton("Delete") { _, _ ->
-            viewModel.delete()
-            requireActivity().finish()
-            startActivity(Intent(context, MainActivity::class.java))
+            dialogBuilder.setPositiveButton("Remove") { _, _ ->
+                viewModel.deleteFromGroup()
+                requireActivity().finish()
+                startActivity(Intent(context, MainActivity::class.java))
+            }
+        } else {
+            dialogBuilder.setMessage("Do you want to delete this child?\nRemoved data couldn't be restored").setTitle("Delete?")
+
+            dialogBuilder.setPositiveButton("Delete") { _, _ ->
+                viewModel.delete()
+                requireActivity().finish()
+                startActivity(Intent(context, MainActivity::class.java))
+            }
         }
 
         dialogBuilder.setNegativeButton("Cancel") { _, _ -> }
@@ -107,6 +115,9 @@ class ChildFragment : Fragment() {
 
         if (viewModel == null) {
             menu.findItem(R.id.deleteBtn)?.isVisible = false
+            menu.findItem(R.id.editBtn)?.isVisible = false
+        }
+        if (viewModel.userRole.value == 1) {
             menu.findItem(R.id.editBtn)?.isVisible = false
         }
     }
