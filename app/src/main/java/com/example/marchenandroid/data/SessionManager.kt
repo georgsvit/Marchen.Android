@@ -68,6 +68,7 @@ class SessionManager(context: Context) {
         editor.putString("fairytaleContents", fairytale.Contents)
         editor.putString("fairytalePsychoType", fairytale.PsychoType)
         editor.putInt("fairytaleFirstUnitId", fairytale.FirstUnitId)
+        editor.putString("fairytalePictureURL", fairytale.PictureURL)
         editor.apply()
     }
 
@@ -88,6 +89,7 @@ class SessionManager(context: Context) {
         editor.remove("fairytaleContents")
         editor.remove("fairytalePsychoType")
         editor.remove("fairytaleFirstUnitId")
+        editor.remove("fairytalePictureURL")
         editor.apply()
     }
 
@@ -117,7 +119,8 @@ class SessionManager(context: Context) {
                 prefs.getString("fairytaleName", null)!!,
                 prefs.getString("fairytaleContents", null)!!,
                 prefs.getString("fairytalePsychoType", null)!!,
-                prefs.getInt("fairytaleFirstUnitId", -1)
+                prefs.getInt("fairytaleFirstUnitId", -1),
+                prefs.getString("fairytalePictureURL", null)!!
         )
     }
 
