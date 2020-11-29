@@ -74,6 +74,22 @@ class ChildViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    fun deleteFromGroup() {
+        viewModelScope.launch {
+            _deleteStatus.value = ApiStatus.LOADING
+            val apiClient = ApiClient()
+
+            try {
+                val response = apiClient.getApiService().deleteChildFromGroup(_childId.value!!, "Bearer $_token")
+                _deleteStatus.value = ApiStatus.DONE
+                Log.i("API", "Procedure: DELETE Child Value: ${response}")
+            } catch (e: Exception) {
+                Log.i("API", "Procedure: DELETE Child Error: $e")
+                _deleteStatus.value = ApiStatus.ERROR
+            }
+        }
+    }
+
     fun delete() {
         viewModelScope.launch {
             _deleteStatus.value = ApiStatus.LOADING
