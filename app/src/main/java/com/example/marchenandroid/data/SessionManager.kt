@@ -82,6 +82,11 @@ class SessionManager(context: Context) {
         editor.apply()
     }
 
+    fun removeFairytaleId() {
+        val editor = prefs.edit().remove("fairytaleId")
+        editor.apply()
+    }
+
     fun removeFairytale() {
         val editor = prefs.edit()
         editor.remove("fairytaleId")
@@ -111,6 +116,10 @@ class SessionManager(context: Context) {
 
     fun fetchChildId() : Int? {
         return prefs.getInt("childId", 0)
+    }
+
+    fun fetchFairytaleId() : Int? {
+        return prefs.getInt("fairytaleId", 0)
     }
 
     fun fetchFairytale() : FairytaleGetResponse? {
