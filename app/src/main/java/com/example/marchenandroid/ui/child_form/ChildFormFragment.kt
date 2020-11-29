@@ -29,22 +29,27 @@ class ChildFormFragment : Fragment() {
 
         name.doAfterTextChanged {
             if (surname.text.toString() != "") {
-                viewModel.dataChanged(name.text.toString(), surname.text.toString())//Integer.parseInt(teacher.text.toString()))
+                viewModel.dataChanged(name.text.toString(), surname.text.toString(), teacher.text.toString())//Integer.parseInt(teacher.text.toString()))
             }
         }
 
         surname.doAfterTextChanged {
             if (name.text.toString() != "") {
-                viewModel.dataChanged(name.text.toString(), surname.text.toString())//Integer.parseInt(teacher.text.toString()))
+                viewModel.dataChanged(name.text.toString(), surname.text.toString(), teacher.text.toString())//Integer.parseInt(teacher.text.toString()))
             }
         }
 
         teacher.doAfterTextChanged {
-            viewModel.dataChanged(name.text.toString(), surname.text.toString())//Integer.parseInt(teacher.text.toString()))
+            viewModel.dataChanged(name.text.toString(), surname.text.toString(), teacher.text.toString())//Integer.parseInt(teacher.text.toString()))
         }
 
         binding.saveBtn.setOnClickListener {
-            viewModel.onSaveClick(name.text.toString(), surname.text.toString(), Integer.parseInt(teacher.text.toString()))
+            val id = if (teacher.text.toString() == "") {
+                0
+            } else {
+                Integer.parseInt(teacher.text.toString())
+            }
+            viewModel.onSaveClick(name.text.toString(), surname.text.toString(), id)
         }
 
         binding.cancelBtn.setOnClickListener {
@@ -79,6 +84,9 @@ class ChildFormFragment : Fragment() {
             }
             if (formState.surnameError != null) {
                 surname.error = getString(formState.surnameError)
+            }
+            if (formState.teacherError != null) {
+                teacher.error = getString(formState.teacherError)
             }
         })
 
