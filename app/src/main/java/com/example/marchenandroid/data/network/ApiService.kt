@@ -55,7 +55,7 @@ interface ApiService {
     @DELETE(Constants.CHILDREN_URL + Constants.CHILD_ID_URL)
     suspend fun deleteChild(@Path("childId") childId: Int, @Header("Authorization") token: String) : ResponseBody
 
-    @DELETE(Constants.CHILDREN_URL + Constants.CHILD_ID_URL + Constants.DELETE_FOR_GROUP_URL)
+    @PATCH(Constants.CHILDREN_URL + Constants.CHILD_ID_URL + Constants.DELETE_FOR_GROUP_URL)
     suspend fun deleteChildFromGroup(@Path("childId") childId: Int, @Header("Authorization") token: String) : ResponseBody
 
     @DELETE(Constants.DELETE_URL)
