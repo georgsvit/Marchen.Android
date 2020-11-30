@@ -12,6 +12,7 @@ import com.example.marchenandroid.data.SessionManager
 import com.example.marchenandroid.data.network.ApiClient
 import com.example.marchenandroid.data.network.ApiStatus
 import com.example.marchenandroid.data.network.dto.requests.ChildRequest
+import com.example.marchenandroid.data.network.dto.responses.AvatarResponse
 import com.example.marchenandroid.data.network.dto.responses.ChildResponse
 import kotlinx.coroutines.launch
 
@@ -31,6 +32,13 @@ class ChildFormViewModel(application: Application) : AndroidViewModel(applicatio
     private val _getStatus = MutableLiveData<ApiStatus>()
     val getStatus: LiveData<ApiStatus> = _getStatus
 
+    private val _avatars = MutableLiveData<List<AvatarResponse>>()
+    val avatars: LiveData<List<AvatarResponse>> = _avatars
+
+    private val _selectedAvatar = MutableLiveData<AvatarResponse>()
+    val selectedAvatar: LiveData<AvatarResponse> = _selectedAvatar
+
+
     private var apiClient: ApiClient
     private var sessionManager: SessionManager
     private var _token: String
@@ -47,6 +55,10 @@ class ChildFormViewModel(application: Application) : AndroidViewModel(applicatio
             getChild(_childId.value!!)
         }
         _formState.value = ChildFormState(isDataValid = true)
+
+        getAvatars()
+
+        _selectedAvatar.value = null
     }
 
     fun dataChanged(name: String, surname: String, teacherId: String) {
@@ -60,6 +72,9 @@ class ChildFormViewModel(application: Application) : AndroidViewModel(applicatio
             !teacherId.isDigitsOnly() -> {
                 _formState.value = ChildFormState(teacherError = R.string.invalid_teacher)
             }
+            _selectedAvatar.value == null -> {
+                _formState.value = ChildFormState(avatarError = R.string.invalid_avatar)
+            }
             else -> {
                 _formState.value = ChildFormState(isDataValid = true)
             }
@@ -67,13 +82,41 @@ class ChildFormViewModel(application: Application) : AndroidViewModel(applicatio
     }
 
     fun onSaveClick(name: String, surname: String, teacherId: Int) {
-        //TODO: Remove fake avatar Id
-        val request = ChildRequest(name, surname, -1, teacherId)
+        val request = ChildRequest(name, surname, _selectedAvatar.value!!.Id, teacherId)
         if (_childId.value == 0) {
             registerChild(request)
         } else {
             if (name != _child.value!!.Firstname || surname != _child.value!!.Lastname || teacherId != _child.value!!.TeacherId) {
                 updateChild(request)
+            }
+        }
+    }
+
+    private fun getAvatars() {
+        viewModelScope.launch {
+            //_status.value = ApiStatus.LOADING
+            try {
+                _avatars.value = apiClient.getApiService().getAvatars("Bearer $_token")
+
+                if (_child.value != null) {
+                    var lst = _avatars.value!!
+
+                    for (el in lst) {
+                        if (el.AvatarURL == _child.value!!.AvatarURL) {
+                            _selectedAvatar.value = el
+                            el.isSelected = true
+                        } else {
+                            el.isSelected = false
+                        }
+                    }
+
+                    _avatars.value = lst
+                }
+                Log.i("API", "Procedure: Get Avatars Value: ${avatars}")
+                //_status.value = ApiStatus.DONE
+            } catch (e: Exception) {
+                Log.i("API", "Procedure: Get Avatars Error: ${e}")
+                //_status.value = ApiStatus.ERROR
             }
         }
     }
@@ -93,7 +136,6 @@ class ChildFormViewModel(application: Application) : AndroidViewModel(applicatio
     }
 
     private fun updateChild(request: ChildRequest) {
-        // TODO: Update child data
         viewModelScope.launch {
             _status.value = ApiStatus.LOADING
             try {
@@ -122,5 +164,17 @@ class ChildFormViewModel(application: Application) : AndroidViewModel(applicatio
                 _child.value = ChildResponse(-1, "undefined", "undefined", "undefined",-1)
             }
         }
+    }
+
+    fun setAvatar(avatar: AvatarResponse) {
+        _selectedAvatar.value = avatar
+
+        var lst = _avatars.value!!
+
+        for (el in lst) {
+            el.isSelected = el.Id == avatar.Id
+        }
+
+        _avatars.value = lst
     }
 }

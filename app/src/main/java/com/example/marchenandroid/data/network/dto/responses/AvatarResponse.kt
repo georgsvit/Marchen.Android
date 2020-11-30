@@ -6,5 +6,7 @@ data class AvatarResponse(
         @SerializedName("id")
         var Id: Int,
         @SerializedName("avatarURL")
-        var AvatarURL: String
+        var AvatarURL: String,
+
+        var isSelected: Boolean = false
 )

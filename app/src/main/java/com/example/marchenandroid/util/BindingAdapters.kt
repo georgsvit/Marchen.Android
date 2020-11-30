@@ -11,6 +11,7 @@ import com.example.marchenandroid.R
 import com.example.marchenandroid.data.network.ApiStatus
 import com.example.marchenandroid.data.network.dto.responses.*
 import com.example.marchenandroid.ui.awards.AwardsGridAdapter
+import com.example.marchenandroid.ui.child_form.AvatarsGridAdapter
 import com.example.marchenandroid.ui.children.ChildrenGridAdapter
 import com.example.marchenandroid.ui.details.DetailsGridAdapter
 import com.example.marchenandroid.ui.library.LibraryGridAdapter
@@ -43,6 +44,12 @@ fun bindReportsRecyclerView(recyclerView: RecyclerView, data: List<ChildReportRe
 @BindingAdapter("awardsListData")
 fun bindAwardsRecyclerView(recyclerView: RecyclerView, data: List<AwardResponse>?) {
     val adapter = recyclerView.adapter as AwardsGridAdapter
+    adapter.submitList(data)
+}
+
+@BindingAdapter("avatarsListData")
+fun bindAvatarsRecyclerView(recyclerView: RecyclerView, data: List<AvatarResponse>?) {
+    val adapter = recyclerView.adapter as AvatarsGridAdapter
     adapter.submitList(data)
 }
 

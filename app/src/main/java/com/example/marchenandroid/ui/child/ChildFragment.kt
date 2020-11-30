@@ -61,11 +61,6 @@ class ChildFragment : Fragment() {
             nameTextView.text = it.Firstname
             surnameTextView.text = it.Lastname
 
-            //TODO: Set normal avatar default picture
-            if (it.AvatarURL == null) {
-                it.AvatarURL = "https://1.bp.blogspot.com/_16lyaJiGldI/TBekxqet-JI/AAAAAAAAAis/jTGCN4Wfo8Q/s1600/smile.jpg"
-            }
-
             val imgUri = it.AvatarURL.toUri().buildUpon().scheme("https").build()
             Glide.with(avatar.context)
                     .load(imgUri)
