@@ -54,7 +54,7 @@ class ChildFormViewModel(application: Application) : AndroidViewModel(applicatio
         if (_childId.value != 0) {
             getChild(_childId.value!!)
         }
-        _formState.value = ChildFormState(isDataValid = true)
+        //_formState.value = ChildFormState(isDataValid = true)
 
         getAvatars()
 
@@ -72,7 +72,7 @@ class ChildFormViewModel(application: Application) : AndroidViewModel(applicatio
             !teacherId.isDigitsOnly() -> {
                 _formState.value = ChildFormState(teacherError = R.string.invalid_teacher)
             }
-            _selectedAvatar.value == null -> {
+            _childId.value == 0 && _selectedAvatar.value == null -> {
                 _formState.value = ChildFormState(avatarError = R.string.invalid_avatar)
             }
             else -> {
@@ -86,9 +86,10 @@ class ChildFormViewModel(application: Application) : AndroidViewModel(applicatio
         if (_childId.value == 0) {
             registerChild(request)
         } else {
-            if (name != _child.value!!.Firstname || surname != _child.value!!.Lastname || teacherId != _child.value!!.TeacherId) {
-                updateChild(request)
-            }
+//            if (name != _child.value!!.Firstname || surname != _child.value!!.Lastname || teacherId != _child.value!!.TeacherId || _selectedAvatar.value!!.AvatarURL != _child.value!!.AvatarURL) {
+//                updateChild(request)
+//            }
+            updateChild(request)
         }
     }
 
@@ -109,7 +110,6 @@ class ChildFormViewModel(application: Application) : AndroidViewModel(applicatio
                             el.isSelected = false
                         }
                     }
-
                     _avatars.value = lst
                 }
                 Log.i("API", "Procedure: Get Avatars Value: ${avatars}")

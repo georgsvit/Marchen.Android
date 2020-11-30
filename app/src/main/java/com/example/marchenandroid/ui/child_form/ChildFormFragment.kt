@@ -101,7 +101,7 @@ class ChildFormFragment : Fragment() {
             viewModel.dataChanged(name.text.toString(), surname.text.toString(), teacher.text.toString())
         })
 
-        viewModel.dataChanged(name.text.toString(), surname.text.toString(), teacher.text.toString())
+        //viewModel.dataChanged(name.text.toString(), surname.text.toString(), teacher.text.toString())
 
         return binding.root
     }
