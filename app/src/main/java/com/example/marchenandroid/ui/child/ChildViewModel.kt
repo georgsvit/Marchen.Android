@@ -42,8 +42,6 @@ class ChildViewModel(application: Application) : AndroidViewModel(application) {
 
         _childId.value = sessionManager.fetchChildId()!!
 
-        sessionManager.removeChildId()
-
         if (_childId.value != 0) {
             getChild(_childId.value!!)
         }

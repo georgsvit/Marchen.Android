@@ -88,7 +88,20 @@ class ChildFormFragment : Fragment() {
             if (formState.teacherError != null) {
                 teacher.error = getString(formState.teacherError)
             }
+            if (formState.avatarError != null) {
+                Toast.makeText(context, getString(formState.avatarError), Toast.LENGTH_SHORT).show()
+            }
         })
+
+        binding.lifecycleOwner = this
+        binding.avatarsGrid.adapter = AvatarsGridAdapter(AvatarsGridAdapter.OnClickListener {
+            viewModel.setAvatar(it)
+            it.isSelected = true
+            binding.avatarsGrid.adapter!!.notifyDataSetChanged()
+            viewModel.dataChanged(name.text.toString(), surname.text.toString(), teacher.text.toString())
+        })
+
+        viewModel.dataChanged(name.text.toString(), surname.text.toString(), teacher.text.toString())
 
         return binding.root
     }

@@ -13,6 +13,7 @@
     <string name="invalid_name">Not a valid name</string>
     <string name="invalid_surname">Not a valid surname</string>
     <string name="invalid_teacher">Not a valid teacher ID</string>
+    <string name="invalid_avatar">Please select avatar form a list</string>
 
     <string name="title_profile">Profile</string>
     <string name="title_children">Children</string>
