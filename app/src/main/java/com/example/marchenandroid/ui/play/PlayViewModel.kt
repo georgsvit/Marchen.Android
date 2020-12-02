@@ -59,11 +59,6 @@ class PlayViewModel(application: Application) : AndroidViewModel(
         _childId = sessionManager.fetchChildId()!!
         _firstUnitId = sessionManager.fetchUnitId()!!
 
-
-        sessionManager.removeChildId()
-        sessionManager.removeUnitId()
-        sessionManager.removeFairytaleId()
-
         _hasPrevSlide.value = false
         _currentUnitId.value = _firstUnitId
         getUnit(_currentUnitId.value!!)
@@ -126,7 +121,7 @@ class PlayViewModel(application: Application) : AndroidViewModel(
             } catch (e: Exception) {
                 Log.i("API", "Procedure: GET Award Error: $e")
                 _status.value = ApiStatus.ERROR
-                _award.value = null
+                _award.value = AwardResponse("Undefined", "Undefined", "Undefined")
             }
         }
     }

@@ -49,7 +49,6 @@ class ChildFormViewModel(application: Application) : AndroidViewModel(applicatio
         _token = sessionManager.fetchAuthToken()!!
 
         _childId.value = sessionManager.fetchChildId()!!
-        sessionManager.removeChildId()
 
         if (_childId.value != 0) {
             getChild(_childId.value!!)
