@@ -34,11 +34,12 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="310dp"
+            android:layout_height="200dp"
             android:layout_marginStart="15dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="15dp"
+            android:alpha="0.9"
             android:src="@drawable/marchen_new_logo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.487"
@@ -60,7 +61,7 @@
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView"
-            app:layout_constraintVertical_bias="0.196" />
+            app:layout_constraintVertical_bias="0.167" />
 
         <EditText
             android:id="@+id/passwordInput"
@@ -83,7 +84,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="25dp"
             android:background="@drawable/button_example_layout"
             android:text="Register"
             android:textColorHighlight="@color/register_button_color"
@@ -97,17 +98,17 @@
             android:id="@+id/loginBtn"
             android:layout_width="105dp"
             android:layout_height="46dp"
-            android:enabled="false"
-            android:textColorHighlight="@color/login_button_color"
-            android:text="Login"
             android:background="@drawable/button_example_layout"
+            android:enabled="false"
+            android:text="Login"
+            android:textColorHighlight="@color/login_button_color"
             app:backgroundTint="#8BC34A"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.503"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/passwordInput"
-            app:layout_constraintVertical_bias="0.31" />
-
+            app:layout_constraintVertical_bias="0.17" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,7 +15,9 @@
         <activity android:name=".ui.reports.ReportsActivity" />
         <activity android:name=".ui.viewer.ViewerActivity" />
         <activity android:name=".ui.play.PlayActivity" />
-        <activity android:name=".ui.child_form.ChildFormActivity" />
+        <activity android:name=".ui.child_form.ChildFormActivity"
+            android:windowSoftInputMode="stateHidden|adjustNothing"
+            />
         <activity android:name=".ui.child.ChildActivity" />
         <activity android:name=".ui.details.DetailsActivity" />
         <activity

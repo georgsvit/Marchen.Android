@@ -96,6 +96,18 @@
                 app:layout_constraintTop_toTopOf="@+id/tableLayout"
                 app:layout_constraintVertical_bias="0.959" />
 
+            <VideoView
+                android:id="@+id/videoView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/getIdBtn"
+                app:layout_constraintDimensionRatio="4:3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </FrameLayout>
