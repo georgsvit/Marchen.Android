@@ -11,19 +11,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MarchenAndroid">
-        <activity android:name=".ui.awards.AwardsActivity"></activity>
-        <activity android:name=".ui.reports.ReportsActivity" />
-        <activity android:name=".ui.viewer.ViewerActivity" />
-        <activity android:name=".ui.play.PlayActivity" />
+        <activity android:name=".ui.awards.AwardsActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ui.reports.ReportsActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ui.viewer.ViewerActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ui.play.PlayActivity" android:screenOrientation="portrait"/>
         <activity android:name=".ui.child_form.ChildFormActivity"
             android:windowSoftInputMode="stateHidden|adjustNothing"
+            android:screenOrientation="portrait"
             />
-        <activity android:name=".ui.child.ChildActivity" />
-        <activity android:name=".ui.details.DetailsActivity" />
+        <activity android:name=".ui.child.ChildActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ui.details.DetailsActivity" android:screenOrientation="portrait"/>
         <activity
             android:name=".HomeActivity"
-            android:label="@string/title_activity_home" />
-        <activity android:name=".MainActivity">
+            android:label="@string/title_activity_home"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MainActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
