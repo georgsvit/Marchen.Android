@@ -23,11 +23,6 @@ class DetailsActivity : AppCompatActivity() {
         if (actionBar != null) {
             actionBar.title = "Details of the tale"
         }
-        val dividerItemDecoration =  DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            dividerItemDecoration.setDrawable(getDrawable(R.drawable.recyclerview_divider)!!)
-        }
-        saves_grid.addItemDecoration(dividerItemDecoration)
 
     }
 

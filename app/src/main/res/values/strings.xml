@@ -38,4 +38,10 @@
     <string name="string_prev">Prev</string>
     <string name="next_btn">Next</string>
     <string name="image_for_fairytale_slide_description">Image for fairytale slide</string>
+    <string name="string_parent">Parent</string>
+    <string name="string_teacher">Teacher</string>
+    <string name="string_register">Register</string>
+    <string name="full_name">Full name</string>
+    <string name="string_pole_doubledots">Role:</string>
+    <string name="string_name_doubledot">Name:</string>
 </resources>
