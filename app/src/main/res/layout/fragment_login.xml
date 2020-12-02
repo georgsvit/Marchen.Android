@@ -13,7 +13,7 @@
         android:id="@+id/title_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/gradient_background"
+        android:background="@drawable/login_background"
         tools:context=".screens.title.TitleFragment">
 
         <TextView
@@ -21,13 +21,29 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Märchen"
+            android:textColor="@color/new_text_color"
             android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+            android:textSize="52sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.023" />
+
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="15dp"
+            android:src="@drawable/marchen_new_logo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.487"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
         <EditText
             android:id="@+id/loginInput"
@@ -70,6 +86,7 @@
             android:layout_marginBottom="24dp"
             android:background="@drawable/button_example_layout"
             android:text="Register"
+            android:textColorHighlight="@color/register_button_color"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -81,6 +98,7 @@
             android:layout_width="105dp"
             android:layout_height="46dp"
             android:enabled="false"
+            android:textColorHighlight="@color/login_button_color"
             android:text="Login"
             android:background="@drawable/button_example_layout"
             app:backgroundTint="#8BC34A"
@@ -90,18 +108,7 @@
             app:layout_constraintTop_toBottomOf="@+id/passwordInput"
             app:layout_constraintVertical_bias="0.31" />
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="15dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView8"
-            android:src="@drawable/marchen_logo"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
