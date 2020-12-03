@@ -2,9 +2,7 @@ package com.example.marchenandroid.ui.children
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -35,17 +33,35 @@ class ChildrenFragment : Fragment() {
             }
         })
 
-        binding.createBtn.setOnClickListener {
-            viewModel.saveChildIdToSP(0)
-            startActivity(Intent(context, ChildFormActivity::class.java))
-        }
+        setHasOptionsMenu(true)
 
         return binding.root
+    }
+
+    private fun addChild() {
+        viewModel.saveChildIdToSP(0)
+        startActivity(Intent(context, ChildFormActivity::class.java))
     }
 
     override fun onResume() {
         viewModel = ViewModelProvider(this).get(ChildrenViewModel::class.java)
         viewModel.globalGetChildren()
         super.onResume()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.children_menu, menu)
+
+        if (viewModel.userRole.value != 2) {
+            menu.findItem(R.id.add_child).isVisible = false
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.add_child -> addChild()
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

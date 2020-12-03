@@ -9,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.marchenandroid.data.SessionManager
 import com.example.marchenandroid.data.network.ApiClient
 import com.example.marchenandroid.data.network.ApiStatus
+import com.example.marchenandroid.data.network.dto.responses.AwardResponse
 import com.example.marchenandroid.data.network.dto.responses.SlideResponse
 import com.example.marchenandroid.data.network.dto.responses.UnitGetResponse
 import kotlinx.coroutines.launch
@@ -18,6 +19,7 @@ class PlayViewModel(application: Application) : AndroidViewModel(
 ) {
     private var _childId: Int = 0
     private var _firstUnitId: Int = 0
+    private var _fairytaleId: Int = 0
 
     private val _currentUnitId = MutableLiveData<Int>()
     val currentUnitId: LiveData<Int> = _currentUnitId
@@ -29,6 +31,9 @@ class PlayViewModel(application: Application) : AndroidViewModel(
 
     private val _slide = MutableLiveData<SlideResponse>()
     val slide: LiveData<SlideResponse> = _slide
+
+    private val _award = MutableLiveData<AwardResponse>()
+    val award: LiveData<AwardResponse> = _award
 
     private val _hasNextSlide = MutableLiveData<Boolean>()
     val hasNextSlide: LiveData<Boolean> = _hasNextSlide
@@ -50,15 +55,14 @@ class PlayViewModel(application: Application) : AndroidViewModel(
         _token = sessionManager.fetchAuthToken()!!
 
 
+        _fairytaleId = sessionManager.fetchFairytaleId()!!
         _childId = sessionManager.fetchChildId()!!
         _firstUnitId = sessionManager.fetchUnitId()!!
-
-        sessionManager.removeChildId()
-        sessionManager.removeUnitId()
 
         _hasPrevSlide.value = false
         _currentUnitId.value = _firstUnitId
         getUnit(_currentUnitId.value!!)
+        getAward()
     }
 
     private fun setSlide() {
@@ -101,6 +105,23 @@ class PlayViewModel(application: Application) : AndroidViewModel(
                 Log.i("API", "Procedure: GET UnitById Error: $e")
                 _status.value = ApiStatus.ERROR
                 _unit.value = null
+            }
+        }
+    }
+
+    private fun getAward() {
+        viewModelScope.launch {
+            _status.value = ApiStatus.LOADING
+            val apiClient = ApiClient()
+
+            try {
+                _award.value = apiClient.getApiService().getFairytaleAward(_fairytaleId,"Bearer $_token")
+                _status.value = ApiStatus.DONE
+                Log.i("API", "Procedure: GET Award Value: ${_award.value}")
+            } catch (e: Exception) {
+                Log.i("API", "Procedure: GET Award Error: $e")
+                _status.value = ApiStatus.ERROR
+                _award.value = AwardResponse("Undefined", "Undefined", "Undefined")
             }
         }
     }

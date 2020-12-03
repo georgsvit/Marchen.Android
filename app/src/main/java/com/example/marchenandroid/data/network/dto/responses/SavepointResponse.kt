@@ -10,5 +10,7 @@ data class SavepointResponse(
     @SerializedName("childId")
     var ChildId: Int,
     @SerializedName("unitId")
-    var UnitId: Int
+    var UnitId: Int,
+    @SerializedName("avatarURL")
+    var AvatarURL: String
 )

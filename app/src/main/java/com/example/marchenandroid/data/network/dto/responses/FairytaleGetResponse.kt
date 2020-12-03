@@ -15,5 +15,7 @@ data class FairytaleGetResponse(
     @SerializedName("psychoType")
     var PsychoType: String,
     @SerializedName("firstUnitId")
-    var FirstUnitId: Int
+    var FirstUnitId: Int,
+    @SerializedName("pictureURL")
+    var PictureURL: String,
 ) : Parcelable

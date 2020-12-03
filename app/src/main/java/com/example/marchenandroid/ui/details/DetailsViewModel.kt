@@ -35,7 +35,6 @@ class DetailsViewModel(application: Application) : AndroidViewModel(application)
         _token = sessionManager.fetchAuthToken()!!
 
         _selectedFairytale.value = sessionManager.fetchFairytale()
-        sessionManager.removeFairytale()
         getSaves()
     }
 

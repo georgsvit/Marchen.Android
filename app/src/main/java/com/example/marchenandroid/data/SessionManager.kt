@@ -68,6 +68,7 @@ class SessionManager(context: Context) {
         editor.putString("fairytaleContents", fairytale.Contents)
         editor.putString("fairytalePsychoType", fairytale.PsychoType)
         editor.putInt("fairytaleFirstUnitId", fairytale.FirstUnitId)
+        editor.putString("fairytalePictureURL", fairytale.PictureURL)
         editor.apply()
     }
 
@@ -81,6 +82,11 @@ class SessionManager(context: Context) {
         editor.apply()
     }
 
+    fun removeFairytaleId() {
+        val editor = prefs.edit().remove("fairytaleId")
+        editor.apply()
+    }
+
     fun removeFairytale() {
         val editor = prefs.edit()
         editor.remove("fairytaleId")
@@ -88,6 +94,7 @@ class SessionManager(context: Context) {
         editor.remove("fairytaleContents")
         editor.remove("fairytalePsychoType")
         editor.remove("fairytaleFirstUnitId")
+        editor.remove("fairytalePictureURL")
         editor.apply()
     }
 
@@ -111,18 +118,27 @@ class SessionManager(context: Context) {
         return prefs.getInt("childId", 0)
     }
 
+    fun fetchFairytaleId() : Int? {
+        return prefs.getInt("fairytaleId", 0)
+    }
+
     fun fetchFairytale() : FairytaleGetResponse? {
         return FairytaleGetResponse(
                 prefs.getInt("fairytaleId", -1),
                 prefs.getString("fairytaleName", null)!!,
                 prefs.getString("fairytaleContents", null)!!,
                 prefs.getString("fairytalePsychoType", null)!!,
-                prefs.getInt("fairytaleFirstUnitId", -1)
+                prefs.getInt("fairytaleFirstUnitId", -1),
+                prefs.getString("fairytalePictureURL", null)!!
         )
     }
 
     fun fetchAuthToken(): String? {
         return prefs.getString(USER_TOKEN, null)
+    }
+
+    fun fetchUserRole(): Int? {
+        return prefs.getInt(USER_ROLE, 0)
     }
 
     fun fetchUserData(): User? {

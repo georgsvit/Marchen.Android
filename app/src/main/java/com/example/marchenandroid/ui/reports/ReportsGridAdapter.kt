@@ -1,4 +1,4 @@
-package com.example.marchenandroid.ui.child
+package com.example.marchenandroid.ui.reports
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.marchenandroid.data.network.dto.responses.ChildReportResponse
 import com.example.marchenandroid.databinding.ChildViewItemBinding
 
-class ChildGridAdapter(private val onClickListener: OnClickListener) : ListAdapter<ChildReportResponse, ChildGridAdapter.ChildReportViewHolder>(DiffCallback) {
+class ReportsGridAdapter(private val onClickListener: OnClickListener) : ListAdapter<ChildReportResponse, ReportsGridAdapter.ChildReportViewHolder>(DiffCallback) {
     class ChildReportViewHolder(private var binding: ChildViewItemBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(report: ChildReportResponse) {
             binding.report = report

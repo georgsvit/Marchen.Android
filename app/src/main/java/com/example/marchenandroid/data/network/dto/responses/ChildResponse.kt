@@ -8,5 +8,9 @@ data class ChildResponse(
     @SerializedName("firstName")
     var Firstname: String,
     @SerializedName("lastName")
-    var Lastname: String
+    var Lastname: String,
+    @SerializedName("avatarURL")
+    var AvatarURL: String,
+    @SerializedName("teacherId")
+    var TeacherId: Int
 )
