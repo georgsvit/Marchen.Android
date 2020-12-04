@@ -81,7 +81,11 @@ class ChildFormViewModel(application: Application) : AndroidViewModel(applicatio
     }
 
     fun onSaveClick(name: String, surname: String, teacherId: Int) {
+        val a = _selectedAvatar.value!!.Id
         val request = ChildRequest(name, surname, _selectedAvatar.value!!.Id, teacherId)
+
+        Log.i("API", "Procedure: onSaveClick Child Value: ${request}")
+
         if (_childId.value == 0) {
             registerChild(request)
         } else {
@@ -105,13 +109,14 @@ class ChildFormViewModel(application: Application) : AndroidViewModel(applicatio
                         if (el.AvatarURL == _child.value!!.AvatarURL) {
                             _selectedAvatar.value = el
                             el.isSelected = true
+                            Log.i("API", "Procedure: Avatar was selected")
                         } else {
                             el.isSelected = false
                         }
                     }
                     _avatars.value = lst
                 }
-                Log.i("API", "Procedure: Get Avatars Value: ${avatars}")
+                Log.i("API", "Procedure: Get Avatars Value: ${avatars.value}")
                 //_status.value = ApiStatus.DONE
             } catch (e: Exception) {
                 Log.i("API", "Procedure: Get Avatars Error: ${e}")

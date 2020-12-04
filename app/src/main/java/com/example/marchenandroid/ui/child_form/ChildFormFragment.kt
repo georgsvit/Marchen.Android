@@ -49,7 +49,12 @@ class ChildFormFragment : Fragment() {
             } else {
                 Integer.parseInt(teacher.text.toString())
             }
-            viewModel.onSaveClick(name.text.toString(), surname.text.toString(), id)
+
+            if (viewModel.selectedAvatar.value == null) {
+                Toast.makeText(context, "Avatar wasn't selected", Toast.LENGTH_SHORT).show()
+            } else {
+                viewModel.onSaveClick(name.text.toString(), surname.text.toString(), id)
+            }
         }
 
         binding.cancelBtn.setOnClickListener {

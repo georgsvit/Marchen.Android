@@ -34,7 +34,6 @@ class ReportsViewModel(application: Application) : AndroidViewModel(application)
         _token = sessionManager.fetchAuthToken()!!
 
         _childId.value = sessionManager.fetchChildId()!!
-        sessionManager.removeChildId()
 
         if (_childId.value != 0) {
             getChildReports(_childId.value!!)
