@@ -7,7 +7,7 @@ object Constants {
     const val TEACHER_ID_URL = "users/account/id"
     const val CHILDREN_URL = "children"
     const val DELETE_URL = "users"
-    const val FAIRYTALES_URL = "fairytales"
+    const val FAIRYTALES_URL = "fairytales?{psychoType}&{minAge}&{maxAge}&{topCount}"
     const val UNIT_URL = "units/{unitId}/{childId}"
     const val SAVEPOINTS_URL = "savepoints/{fairytaleId}"
     const val REPORTS_URL = "/reports"

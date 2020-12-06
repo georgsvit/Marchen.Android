@@ -29,7 +29,7 @@ interface ApiService {
     suspend fun getTeacherId(@Header("Authorization") token: String) : Int
 
     @GET(Constants.FAIRYTALES_URL)
-    suspend fun getFairyTales(@Header("Authorization") token: String) : List<FairytaleGetResponse>
+    suspend fun getFairyTales(@Path("psychoType") psychoType: String, @Path("minAge") minAge: Int, @Path("maxAge") maxAge: Int, @Path("topCount") topCount: Int, @Header("Authorization") token: String) : List<FairytaleGetResponse>
 
     @GET(Constants.UNIT_URL)
     suspend fun getUnitById(@Path("unitId") unitId: Int, @Path("childId") childId: Int, @Header("Authorization") token: String) : UnitGetResponse
