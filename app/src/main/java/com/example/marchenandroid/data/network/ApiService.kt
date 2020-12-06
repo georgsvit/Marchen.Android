@@ -58,6 +58,9 @@ interface ApiService {
     @GET(Constants.FAIRYTALE_AWARD)
     suspend fun getFairytaleAward(@Path("fairytaleId") fairytaleId: Int, @Header("Authorization") token: String) : AwardResponse
 
+    @GET(Constants.PSYCHOTYPES_URL)
+    suspend fun getPsychoTypes(@Header("Authorization") token: String) : List<String>
+
     @DELETE(Constants.CHILDREN_URL + Constants.CHILD_ID_URL)
     suspend fun deleteChild(@Path("childId") childId: Int, @Header("Authorization") token: String) : ResponseBody
 
