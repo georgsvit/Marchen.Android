@@ -1,6 +1,7 @@
 package com.example.marchenandroid.data.network.dto.responses
 
 import com.google.gson.annotations.SerializedName
+import java.util.*
 
 data class ChildResponse(
     @SerializedName("id")
@@ -12,5 +13,7 @@ data class ChildResponse(
     @SerializedName("avatarURL")
     var AvatarURL: String,
     @SerializedName("teacherId")
-    var TeacherId: Int
+    var TeacherId: Int,
+    @SerializedName("dateOfBirth")
+    var DateOfBirth: Date
 )
