@@ -4,6 +4,8 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 @Parcelize
@@ -25,10 +27,14 @@ data class FairytaleGetResponse(
     @SerializedName("maxAge")
     var MaxAge: Int,
     @SerializedName("creationDate")
-    var CreationDate: String,
+    var CreationDate: String
 ) : Parcelable {
-    fun getDOB() : Date {
-        val formatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH)
-        return if (CreationDate != null) formatter.parse(CreationDate) else Date()
+    fun getDate() : String {
+        val ld = LocalDate.parse(CreationDate.subSequence(0, 19), DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss"))
+        return "${ld.dayOfMonth}/${ld.monthValue}/${ld.year}"
+    }
+
+    fun getAgeRange(): String {
+        return "$MinAge-$MaxAge"
     }
 }

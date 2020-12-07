@@ -78,6 +78,44 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:fontFamily="sans-serif-light"
+                        android:gravity="fill_horizontal"
+                        android:inputType="textMultiLine"
+                        android:padding="3dip"
+                        android:singleLine="false"
+                        android:text="@{fairytaleViewModel.selectedFairytale.ageRange}"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/new_text_color"
+                        android:textSize="24sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:fontFamily="sans-serif-light"
+                        android:gravity="fill_horizontal"
+                        android:inputType="textMultiLine"
+                        android:padding="3dip"
+                        android:singleLine="false"
+                        android:text="@{fairytaleViewModel.selectedFairytale.date}"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/new_text_color"
+                        android:textSize="24sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
                     <ScrollView
                         android:layout_width="399dp"
                         android:layout_height="match_parent">
