@@ -13,6 +13,7 @@ import com.example.marchenandroid.data.network.dto.responses.ChildReportResponse
 import com.example.marchenandroid.data.network.dto.responses.ChildResponse
 import kotlinx.coroutines.launch
 import java.lang.Exception
+import java.util.*
 
 class ChildViewModel(application: Application) : AndroidViewModel(application) {
     private val _childId = MutableLiveData<Int>()
@@ -67,7 +68,7 @@ class ChildViewModel(application: Application) : AndroidViewModel(application) {
             } catch (e: Exception) {
                 Log.i("API", "Procedure: GET Child Error: $e")
                 _status.value = ApiStatus.ERROR
-                _child.value = ChildResponse(-1, "undefined", "undefined", "undefined", -1)
+                _child.value = ChildResponse(-1, "undefined", "undefined", "undefined", -1, "")
             }
         }
     }
