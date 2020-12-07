@@ -13,5 +13,5 @@ data class ChildRequest(
     @SerializedName("teacherId")
     var TeacherId: Int,
     @SerializedName("dateOfBirth")
-    var DateOfBirth: Date
+    var DateOfBirth: String
 )

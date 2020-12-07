@@ -3,6 +3,7 @@ package com.example.marchenandroid.data.network.dto.responses
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
+import java.text.SimpleDateFormat
 import java.util.*
 
 @Parcelize
@@ -24,5 +25,10 @@ data class FairytaleGetResponse(
     @SerializedName("maxAge")
     var MaxAge: Int,
     @SerializedName("creationDate")
-    var CreationDate: Date,
-) : Parcelable
+    var CreationDate: String,
+) : Parcelable {
+    fun getDOB() : Date {
+        val formatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH)
+        return if (CreationDate != null) formatter.parse(CreationDate) else Date()
+    }
+}
