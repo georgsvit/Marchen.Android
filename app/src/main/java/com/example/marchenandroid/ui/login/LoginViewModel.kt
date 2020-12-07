@@ -37,7 +37,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
     init {
         _jwtTokenResponse.value = null
         sessionManager = SessionManager(context = getApplication())
-        _tokenDate.value = sessionManager.fetchTokenDate()
+        _tokenDate.value = sessionManager.fetchDate("token_date")
     }
 
     fun loginDataChanged(email: String, password: String) {
