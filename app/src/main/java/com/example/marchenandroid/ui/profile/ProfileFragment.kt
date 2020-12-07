@@ -18,10 +18,6 @@ import com.example.marchenandroid.databinding.FragmentProfileBinding
 
 class ProfileFragment : Fragment() {
     private lateinit var viewModel: ProfileViewModel
-    private val VIDEO_SAMPLE = "presentations"//"tapok"
-    private val PLAYBACK_TIME = "play_time"
-    private var mCurrentPosition = 0
-    private var mVideoView: VideoView? = null
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -41,41 +37,9 @@ class ProfileFragment : Fragment() {
             Toast.makeText(context, "Your Id: $id", Toast.LENGTH_LONG).show()
         }
 
-        mVideoView = binding.videoView
-
-        if (savedInstanceState != null) {
-            mCurrentPosition = savedInstanceState.getInt(PLAYBACK_TIME);
-        }
-
-        val controller = MediaController(activity)
-        controller.setMediaPlayer(mVideoView)
-        mVideoView!!.setMediaController(controller);
-
         setHasOptionsMenu(true)
 
         return binding.root
-    }
-
-    override fun onStart() {
-        super.onStart()
-        initializePlayer()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        releasePlayer()
-    }
-
-    override fun onPause() {
-        super.onPause()
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-            mVideoView!!.pause()
-        }
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putInt(PLAYBACK_TIME, mVideoView!!.currentPosition)
     }
 
     private fun quit() {
@@ -98,43 +62,5 @@ class ProfileFragment : Fragment() {
             R.id.logout -> quit()
         }
         return super.onOptionsItemSelected(item)
-    }
-
-    private fun getMedia(mediaName: String): Uri? {
-        return if (URLUtil.isValidUrl(mediaName)) {
-            // media name is an external URL
-            Uri.parse(mediaName)
-        } else { // media name is a raw resource embedded in the app
-            Uri.parse(
-                    "android.resource://" + context?.getPackageName() +
-                            "/raw/" + mediaName
-            )
-        }
-    }
-
-    private fun initializePlayer() {
-        val videoUri = getMedia(VIDEO_SAMPLE)
-        mVideoView!!.setVideoURI(videoUri)
-
-//        if (mCurrentPosition > 0) {
-//            mVideoView!!.seekTo(mCurrentPosition);
-//        } else {
-//            // Skipping to 1 shows the first frame of the video.
-//            mVideoView!!.seekTo(1);
-//        }
-
-        mVideoView!!.setOnPreparedListener {
-            if (mCurrentPosition > 0) {
-                mVideoView!!.seekTo(mCurrentPosition);
-            } else {
-                mVideoView!!.seekTo(1);
-            }
-
-            mVideoView!!.start();
-        }
-    }
-
-    private fun releasePlayer() {
-        mVideoView!!.stopPlayback()
     }
 }
