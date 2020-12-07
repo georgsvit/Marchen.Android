@@ -15,6 +15,11 @@ import com.example.marchenandroid.data.network.dto.requests.ChildRequest
 import com.example.marchenandroid.data.network.dto.responses.AvatarResponse
 import com.example.marchenandroid.data.network.dto.responses.ChildResponse
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.*
+import javax.xml.datatype.DatatypeConstants.MONTHS
 
 class ChildFormViewModel(application: Application) : AndroidViewModel(application) {
     private val _childId = MutableLiveData<Int>()
@@ -38,6 +43,9 @@ class ChildFormViewModel(application: Application) : AndroidViewModel(applicatio
     private val _selectedAvatar = MutableLiveData<AvatarResponse>()
     val selectedAvatar: LiveData<AvatarResponse> = _selectedAvatar
 
+    private val _dob = MutableLiveData<LocalDate>()
+    val dob: LiveData<LocalDate> = _dob
+
 
     private var apiClient: ApiClient
     private var sessionManager: SessionManager
@@ -53,7 +61,6 @@ class ChildFormViewModel(application: Application) : AndroidViewModel(applicatio
         if (_childId.value != 0) {
             getChild(_childId.value!!)
         }
-        //_formState.value = ChildFormState(isDataValid = true)
 
         getAvatars()
 
@@ -82,23 +89,19 @@ class ChildFormViewModel(application: Application) : AndroidViewModel(applicatio
 
     fun onSaveClick(name: String, surname: String, teacherId: Int) {
         val a = _selectedAvatar.value!!.Id
-        val request = ChildRequest(name, surname, _selectedAvatar.value!!.Id, teacherId)
+        val request = ChildRequest(name, surname, _selectedAvatar.value!!.Id, teacherId, "${_dob.value.toString()}T00:00:00")
 
         Log.i("API", "Procedure: onSaveClick Child Value: ${request}")
 
         if (_childId.value == 0) {
             registerChild(request)
         } else {
-//            if (name != _child.value!!.Firstname || surname != _child.value!!.Lastname || teacherId != _child.value!!.TeacherId || _selectedAvatar.value!!.AvatarURL != _child.value!!.AvatarURL) {
-//                updateChild(request)
-//            }
             updateChild(request)
         }
     }
 
     private fun getAvatars() {
         viewModelScope.launch {
-            //_status.value = ApiStatus.LOADING
             try {
                 _avatars.value = apiClient.getApiService().getAvatars("Bearer $_token")
 
@@ -117,10 +120,8 @@ class ChildFormViewModel(application: Application) : AndroidViewModel(applicatio
                     _avatars.value = lst
                 }
                 Log.i("API", "Procedure: Get Avatars Value: ${avatars.value}")
-                //_status.value = ApiStatus.DONE
             } catch (e: Exception) {
                 Log.i("API", "Procedure: Get Avatars Error: ${e}")
-                //_status.value = ApiStatus.ERROR
             }
         }
     }
@@ -162,10 +163,13 @@ class ChildFormViewModel(application: Application) : AndroidViewModel(applicatio
                 _child.value = apiClient.getApiService().getChildById(childId, "Bearer $_token")
                 _getStatus.value = ApiStatus.DONE
                 Log.i("API", "Procedure: GET Child Value: ${_child.value}")
+                val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss")
+                _dob.value = LocalDate.parse(_child.value!!.DateOfBirth, formatter)
             } catch (e: java.lang.Exception) {
                 Log.i("API", "Procedure: GET Child Error: $e")
                 _getStatus.value = ApiStatus.ERROR
-                _child.value = ChildResponse(-1, "undefined", "undefined", "undefined",-1)
+                _dob.value = LocalDate.MIN
+                _child.value = ChildResponse(-1, "undefined", "undefined", "undefined",-1, "")
             }
         }
     }
@@ -180,5 +184,9 @@ class ChildFormViewModel(application: Application) : AndroidViewModel(applicatio
         }
 
         _avatars.value = lst
+    }
+
+    fun setDOB(year: Int, month: Int, day: Int) {
+        _dob.value = LocalDate.of(year, month, day)
     }
 }

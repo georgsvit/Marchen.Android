@@ -1,5 +1,6 @@
 package com.example.marchenandroid.ui.child_form
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.text.Editable
 import android.util.Log
@@ -14,6 +15,9 @@ import androidx.lifecycle.Observer
 import com.example.marchenandroid.R
 import com.example.marchenandroid.data.network.ApiStatus
 import com.example.marchenandroid.databinding.FragmentChildFormBinding
+import java.time.LocalDate
+import java.time.Month
+import java.util.*
 
 class ChildFormFragment : Fragment() {
     private lateinit var viewModel: ChildFormViewModel
@@ -52,6 +56,8 @@ class ChildFormFragment : Fragment() {
 
             if (viewModel.selectedAvatar.value == null) {
                 Toast.makeText(context, "Avatar wasn't selected", Toast.LENGTH_SHORT).show()
+            } else if (viewModel.dob.value == null) {
+                Toast.makeText(context, "Birth date wasn't selected", Toast.LENGTH_SHORT).show()
             } else {
                 viewModel.onSaveClick(name.text.toString(), surname.text.toString(), id)
             }
@@ -106,7 +112,43 @@ class ChildFormFragment : Fragment() {
             viewModel.dataChanged(name.text.toString(), surname.text.toString(), teacher.text.toString())
         })
 
-        //viewModel.dataChanged(name.text.toString(), surname.text.toString(), teacher.text.toString())
+        viewModel.dob.observe(viewLifecycleOwner, Observer {
+            if (it != null) {
+                binding.dobBtn.text = "${it.dayOfMonth.toString()}/${it.monthValue}/${it.year.toString()}"
+            } else {
+                binding.dobBtn.text = "Set birth date"
+            }
+        })
+
+        binding.dobBtn.setOnClickListener {
+            val c = Calendar.getInstance()
+            val year = if (viewModel.dob.value != null) {
+                viewModel.dob.value!!.year
+            } else {
+                c.get(Calendar.YEAR)
+            }
+            val month = if (viewModel.dob.value != null) {
+                viewModel.dob.value!!.monthValue - 1
+            } else {
+                c.get(Calendar.MONTH)
+            }
+            val day = if (viewModel.dob.value != null) {
+                viewModel.dob.value!!.dayOfMonth
+            } else {
+                c.get(Calendar.DAY_OF_MONTH)
+            }
+
+            val datePickerDialog = DatePickerDialog(requireContext(), DatePickerDialog.OnDateSetListener { picker, year, month, day ->
+                viewModel.setDOB(year, month + 1, day)
+            }, year, month, day)
+
+            c.add(Calendar.YEAR, -3)
+            datePickerDialog.datePicker.maxDate = c.timeInMillis
+            c.add(Calendar.YEAR, -7)
+            datePickerDialog.datePicker.minDate = c.timeInMillis
+
+            datePickerDialog.show()
+        }
 
         return binding.root
     }
