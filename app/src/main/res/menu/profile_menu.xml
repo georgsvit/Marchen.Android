@@ -3,6 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/getId"
+        android:enabled="true"
+        android:icon="@drawable/ic_outline_info"
+        android:title="Get Id"
+        android:visible="true"
+        app:showAsAction="ifRoom" />
+    <item
         android:id="@+id/logout"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_log_out"

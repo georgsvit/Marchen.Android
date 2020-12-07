@@ -32,14 +32,14 @@ class ProfileFragment : Fragment() {
         )
         binding.accountViewModel = viewModel
 
-        binding.getIdBtn.setOnClickListener {
-            val id = viewModel.getTeacherId()
-            Toast.makeText(context, "Your Id: $id", Toast.LENGTH_LONG).show()
-        }
-
         setHasOptionsMenu(true)
 
         return binding.root
+    }
+
+    private fun getTeacherId() {
+        val id = viewModel.getTeacherId()
+        Toast.makeText(context, "Your Id: $id", Toast.LENGTH_LONG).show()
     }
 
     private fun quit() {
@@ -55,11 +55,15 @@ class ProfileFragment : Fragment() {
         if (viewModel == null) {
             menu.findItem(R.id.logout)?.isVisible = false
         }
+        if (viewModel.userRole.value == 2) {
+            menu.findItem(R.id.getId)?.isVisible = false
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.logout -> quit()
+            R.id.getId -> getTeacherId()
         }
         return super.onOptionsItemSelected(item)
     }
