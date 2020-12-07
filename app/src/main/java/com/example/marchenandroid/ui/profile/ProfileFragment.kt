@@ -11,10 +11,13 @@ import android.widget.Toast
 import android.widget.VideoView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.marchenandroid.MainActivity
 import com.example.marchenandroid.R
 import com.example.marchenandroid.databinding.FragmentProfileBinding
+import com.example.marchenandroid.ui.details.DetailsActivity
+import com.example.marchenandroid.ui.library.LibraryGridAdapter
 
 class ProfileFragment : Fragment() {
     private lateinit var viewModel: ProfileViewModel
@@ -30,7 +33,17 @@ class ProfileFragment : Fragment() {
                 container,
                 false
         )
+        binding.lifecycleOwner = this
         binding.accountViewModel = viewModel
+
+        binding.profileTalesGrid.adapter = LibraryGridAdapter(LibraryGridAdapter.OnClickListener { viewModel.displayFairytaleDetails(it) })
+        viewModel.navigateToSelectedFairytale.observe(viewLifecycleOwner, Observer {
+            if (it != null) {
+                viewModel.saveSelectedFairytaleToSP(it)
+                startActivity(Intent(context, DetailsActivity::class.java))
+                viewModel.displayFairytaleDetailsComplete()
+            }
+        })
 
         setHasOptionsMenu(true)
 
