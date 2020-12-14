@@ -87,7 +87,7 @@
                         android:inputType="textMultiLine"
                         android:padding="3dip"
                         android:singleLine="false"
-                        android:text="@{fairytaleViewModel.selectedFairytale.ageRange}"
+                        android:text='@{"Age range: " + fairytaleViewModel.selectedFairytale.ageRange}'
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                         android:textColor="#3D3E3B"
                         android:textSize="24sp" />
@@ -106,7 +106,7 @@
                         android:inputType="textMultiLine"
                         android:padding="3dip"
                         android:singleLine="false"
-                        android:text="@{fairytaleViewModel.selectedFairytale.date}"
+                        android:text='@{"Creation date: " + fairytaleViewModel.selectedFairytale.date}'
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                         android:textColor="#42433F"
                         android:textSize="24sp" />

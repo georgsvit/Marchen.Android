@@ -11,6 +11,7 @@ import android.text.SpannableStringBuilder
 import android.view.*
 import android.widget.EditText
 import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -18,6 +19,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.marchenandroid.R
 import com.example.marchenandroid.databinding.FragmentLibraryBinding
 import com.example.marchenandroid.ui.details.DetailsActivity
+import org.w3c.dom.Text
 import java.util.*
 
 class LibraryFragment : Fragment() {
@@ -65,7 +67,15 @@ class LibraryFragment : Fragment() {
             maxAgeInput.hint = "Maximum age"
             maxAgeInput.text = SpannableStringBuilder(viewModel.maxAge.toString())
 
+            val minAgeLabel = TextView(context)
+            minAgeLabel.text = "Minimum age"
+
+            val maxAgeLabel = TextView(context)
+            maxAgeLabel.text = "Maximum age"
+
+            layout.addView(minAgeLabel)
             layout.addView(minAgeInput)
+            layout.addView(maxAgeLabel)
             layout.addView(maxAgeInput)
 
             builder.setView(layout)
