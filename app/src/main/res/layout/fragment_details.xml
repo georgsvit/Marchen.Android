@@ -38,7 +38,7 @@
                         android:singleLine="false"
                         android:text="@{fairytaleViewModel.selectedFairytale.name}"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                        android:textColor="@color/new_text_color"
+                        android:textColor="#3D3E3B"
                         android:textSize="30sp"
                         android:textStyle="bold" />
                 </TableRow>
@@ -53,7 +53,7 @@
                         android:singleLine="false"
                         android:text="@{fairytaleViewModel.selectedFairytale.psychoType}"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="@color/new_text_color"
+                        android:textColor="#3D3E3B"
                         android:textSize="24sp" />
                 </TableRow>
 
@@ -70,7 +70,7 @@
                         android:singleLine="false"
                         android:text="@{fairytaleViewModel.selectedFairytale.contents}"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="@color/new_text_color"
+                        android:textColor="#3D3E3B"
                         android:textSize="24sp" />
                 </TableRow>
 
@@ -89,7 +89,7 @@
                         android:singleLine="false"
                         android:text="@{fairytaleViewModel.selectedFairytale.ageRange}"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="@color/new_text_color"
+                        android:textColor="#3D3E3B"
                         android:textSize="24sp" />
                 </TableRow>
 
@@ -108,7 +108,7 @@
                         android:singleLine="false"
                         android:text="@{fairytaleViewModel.selectedFairytale.date}"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="@color/new_text_color"
+                        android:textColor="#42433F"
                         android:textSize="24sp" />
                 </TableRow>
 
