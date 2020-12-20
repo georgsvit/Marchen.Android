@@ -18,7 +18,9 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/login_background">
+            android:background="@drawable/login_background"
+            android:alpha="0.9"
+            >
 
             <TableLayout
                 android:layout_width="match_parent"
@@ -38,7 +40,7 @@
                         android:singleLine="false"
                         android:text="@{fairytaleViewModel.selectedFairytale.name}"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                        android:textColor="#3D3E3B"
+                        android:textColor="#20291D"
                         android:textSize="30sp"
                         android:textStyle="bold" />
                 </TableRow>
@@ -53,8 +55,9 @@
                         android:singleLine="false"
                         android:text="@{fairytaleViewModel.selectedFairytale.psychoType}"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="#3D3E3B"
-                        android:textSize="24sp" />
+                        android:textColor="#20291D"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
                 </TableRow>
 
                 <TableRow android:layout_height="wrap_content">
@@ -70,7 +73,7 @@
                         android:singleLine="false"
                         android:text="@{fairytaleViewModel.selectedFairytale.contents}"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="#3D3E3B"
+                        android:textColor="#20291D"
                         android:textSize="24sp" />
                 </TableRow>
 
@@ -89,7 +92,8 @@
                         android:singleLine="false"
                         android:text="@{fairytaleViewModel.selectedFairytale.ageRange}"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="#3D3E3B"
+                        android:textColor="#20291D"
+                        android:textStyle="bold"
                         android:textSize="24sp" />
                 </TableRow>
 
@@ -108,7 +112,8 @@
                         android:singleLine="false"
                         android:text="@{fairytaleViewModel.selectedFairytale.date}"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="#42433F"
+                        android:textColor="#20291D"
+                        android:textStyle="bold"
                         android:textSize="24sp" />
                 </TableRow>
 
