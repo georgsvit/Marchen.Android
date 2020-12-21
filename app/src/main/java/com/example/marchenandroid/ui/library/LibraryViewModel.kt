@@ -45,7 +45,7 @@ class LibraryViewModel(application: Application) : AndroidViewModel(application)
         viewModelScope.launch {
             val apiClient = ApiClient()
             try {
-                types = apiClient.getApiService().getPsychoTypes(token = "Bearer $_token")
+                types = apiClient.getApiService().getPsychoTypes(token = "Bearer $_token").distinct()
                 Log.i("API", "Procedure: GET Psychotypes Value: ${types}")
             } catch (e: Exception) {
                 Log.i("API", "Procedure: Psychotypes Error: $e")

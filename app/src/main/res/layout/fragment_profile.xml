@@ -88,7 +88,7 @@
                 android:id="@+id/profile_tales_grid"
                 fairytaleListData="@{accountViewModel.tales}"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="500dp"
                 android:layout_marginTop="50dp"
                 android:clipToPadding="false"
                 android:padding="6dp"

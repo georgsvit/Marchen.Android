@@ -51,7 +51,7 @@
             android:layout_marginEnd="12dp"
             android:layout_marginRight="12dp"
             android:layout_marginBottom="12dp"
-            android:text="@{report.dateTime}"
+            android:text="@{report.date}"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
