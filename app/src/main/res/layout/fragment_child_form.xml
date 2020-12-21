@@ -57,15 +57,29 @@
                 app:layout_constraintTop_toBottomOf="@+id/nameField"
                 app:layout_constraintVertical_bias="0.023" />
 
-            <Button
-                android:id="@+id/saveBtn"
+            <EditText
+                android:id="@+id/teacherIdField"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="35dp"
-                android:enabled="false"
-                android:text="@string/save_btn"
-                app:layout_constraintEnd_toStartOf="@+id/cancelBtn"
-                app:layout_constraintHorizontal_bias="0.583"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/field_example_layout"
+                android:ems="10"
+                android:hint="Teacher Id"
+                android:inputType="number"
+                android:padding="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/surnameField" />
+
+            <Button
+                android:id="@+id/dobBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Set date of birth"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/teacherIdField" />
 
@@ -73,26 +87,46 @@
                 android:id="@+id/cancelBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="35dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
                 android:text="@string/cancel_btn"
+                app:layout_constraintBottom_toTopOf="@+id/avatars_grid"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.78"
+                app:layout_constraintHorizontal_bias="0.728"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/teacherIdField" />
+                app:layout_constraintTop_toBottomOf="@+id/dobBtn"
+                app:layout_constraintVertical_bias="0.796" />
+
+            <Button
+                android:id="@+id/saveBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:enabled="false"
+                android:text="@string/save_btn"
+                app:layout_constraintBottom_toTopOf="@+id/avatars_grid"
+                app:layout_constraintEnd_toStartOf="@+id/cancelBtn"
+                app:layout_constraintHorizontal_bias="0.598"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dobBtn"
+                app:layout_constraintVertical_bias="0.796" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/avatars_grid"
                 avatarsListData="@{childFormViewModel.avatars}"
-                android:layout_width="390dp"
-                android:layout_height="389dp"
+                android:layout_width="382dp"
+                android:layout_height="248dp"
                 android:clipToPadding="false"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.931"
+                app:layout_constraintHorizontal_bias="0.589"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/saveBtn"
-                app:layout_constraintVertical_bias="1.0"
                 app:spanCount="3"
                 tools:itemCount="16"
                 tools:listitem="@layout/avatar_view_item" />
@@ -109,21 +143,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.352" />
-
-            <EditText
-                android:id="@+id/teacherIdField"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/field_example_layout"
-                android:ems="10"
-                android:hint="Teacher Id"
-                android:inputType="number"
-                android:padding="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.497"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/surnameField" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

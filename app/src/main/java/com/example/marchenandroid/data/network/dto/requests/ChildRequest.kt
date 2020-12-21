@@ -1,6 +1,7 @@
 package com.example.marchenandroid.data.network.dto.requests
 
 import com.google.gson.annotations.SerializedName
+import java.util.*
 
 data class ChildRequest(
     @SerializedName("Firstname")
@@ -11,4 +12,6 @@ data class ChildRequest(
     var AvatarId: Int,
     @SerializedName("teacherId")
     var TeacherId: Int,
+    @SerializedName("dateOfBirth")
+    var DateOfBirth: String
 )

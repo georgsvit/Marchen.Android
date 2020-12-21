@@ -11,17 +11,16 @@ import android.widget.Toast
 import android.widget.VideoView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.marchenandroid.MainActivity
 import com.example.marchenandroid.R
 import com.example.marchenandroid.databinding.FragmentProfileBinding
+import com.example.marchenandroid.ui.details.DetailsActivity
+import com.example.marchenandroid.ui.library.LibraryGridAdapter
 
 class ProfileFragment : Fragment() {
     private lateinit var viewModel: ProfileViewModel
-    private val VIDEO_SAMPLE = "presentations"//"tapok"
-    private val PLAYBACK_TIME = "play_time"
-    private var mCurrentPosition = 0
-    private var mVideoView: VideoView? = null
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -34,48 +33,26 @@ class ProfileFragment : Fragment() {
                 container,
                 false
         )
+        binding.lifecycleOwner = this
         binding.accountViewModel = viewModel
 
-        binding.getIdBtn.setOnClickListener {
-            val id = viewModel.getTeacherId()
-            Toast.makeText(context, "Your Id: $id", Toast.LENGTH_LONG).show()
-        }
-
-        mVideoView = binding.videoView
-
-        if (savedInstanceState != null) {
-            mCurrentPosition = savedInstanceState.getInt(PLAYBACK_TIME);
-        }
-
-        val controller = MediaController(activity)
-        controller.setMediaPlayer(mVideoView)
-        mVideoView!!.setMediaController(controller);
+        binding.profileTalesGrid.adapter = LibraryGridAdapter(LibraryGridAdapter.OnClickListener { viewModel.displayFairytaleDetails(it) })
+        viewModel.navigateToSelectedFairytale.observe(viewLifecycleOwner, Observer {
+            if (it != null) {
+                viewModel.saveSelectedFairytaleToSP(it)
+                startActivity(Intent(context, DetailsActivity::class.java))
+                viewModel.displayFairytaleDetailsComplete()
+            }
+        })
 
         setHasOptionsMenu(true)
 
         return binding.root
     }
 
-    override fun onStart() {
-        super.onStart()
-        initializePlayer()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        releasePlayer()
-    }
-
-    override fun onPause() {
-        super.onPause()
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-            mVideoView!!.pause()
-        }
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putInt(PLAYBACK_TIME, mVideoView!!.currentPosition)
+    private fun getTeacherId() {
+        val id = viewModel.getTeacherId()
+        Toast.makeText(context, "Your Id: $id", Toast.LENGTH_LONG).show()
     }
 
     private fun quit() {
@@ -91,50 +68,16 @@ class ProfileFragment : Fragment() {
         if (viewModel == null) {
             menu.findItem(R.id.logout)?.isVisible = false
         }
+        if (viewModel.userRole.value == 2) {
+            menu.findItem(R.id.getId)?.isVisible = false
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.logout -> quit()
+            R.id.getId -> getTeacherId()
         }
         return super.onOptionsItemSelected(item)
-    }
-
-    private fun getMedia(mediaName: String): Uri? {
-        return if (URLUtil.isValidUrl(mediaName)) {
-            // media name is an external URL
-            Uri.parse(mediaName)
-        } else { // media name is a raw resource embedded in the app
-            Uri.parse(
-                    "android.resource://" + context?.getPackageName() +
-                            "/raw/" + mediaName
-            )
-        }
-    }
-
-    private fun initializePlayer() {
-        val videoUri = getMedia(VIDEO_SAMPLE)
-        mVideoView!!.setVideoURI(videoUri)
-
-//        if (mCurrentPosition > 0) {
-//            mVideoView!!.seekTo(mCurrentPosition);
-//        } else {
-//            // Skipping to 1 shows the first frame of the video.
-//            mVideoView!!.seekTo(1);
-//        }
-
-        mVideoView!!.setOnPreparedListener {
-            if (mCurrentPosition > 0) {
-                mVideoView!!.seekTo(mCurrentPosition);
-            } else {
-                mVideoView!!.seekTo(1);
-            }
-
-            mVideoView!!.start();
-        }
-    }
-
-    private fun releasePlayer() {
-        mVideoView!!.stopPlayback()
     }
 }

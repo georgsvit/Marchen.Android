@@ -17,4 +17,5 @@ object Constants {
     const val AVATARS_URL = "/avatars"
     const val DELETE_FOR_GROUP_URL = "/removeFromGroup"
     const val FAIRYTALE_AWARD = "/awards/{fairytaleId}"
+    const val PSYCHOTYPES_URL = "fairytales/psychoTypes"
 }

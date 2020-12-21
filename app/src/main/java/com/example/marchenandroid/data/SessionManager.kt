@@ -69,6 +69,9 @@ class SessionManager(context: Context) {
         editor.putString("fairytalePsychoType", fairytale.PsychoType)
         editor.putInt("fairytaleFirstUnitId", fairytale.FirstUnitId)
         editor.putString("fairytalePictureURL", fairytale.PictureURL)
+        editor.putInt("fairytaleMinAge", fairytale.MinAge)
+        editor.putInt("fairytaleMaxAge", fairytale.MaxAge)
+        editor.putString("fairytaleCreationDate", fairytale.CreationDate)
         editor.apply()
     }
 
@@ -129,7 +132,10 @@ class SessionManager(context: Context) {
                 prefs.getString("fairytaleContents", null)!!,
                 prefs.getString("fairytalePsychoType", null)!!,
                 prefs.getInt("fairytaleFirstUnitId", -1),
-                prefs.getString("fairytalePictureURL", null)!!
+                prefs.getString("fairytalePictureURL", null)!!,
+                prefs.getInt("fairytaleMinAge", -1),
+                prefs.getInt("fairytaleMaxAge", -1),
+                prefs.getString("fairytaleCreationDate", null)!!
         )
     }
 
@@ -152,9 +158,9 @@ class SessionManager(context: Context) {
         )
     }
 
-    fun fetchTokenDate(): Date? {
+    fun fetchDate(dateName: String): Date? {
         val formatter = SimpleDateFormat("EEE MMM d HH:mm:ss Z yyyy", Locale.ENGLISH)
-        val dateInString = prefs.getString(TOKEN_DATE, null)
+        val dateInString = prefs.getString(dateName, null)
         return if (dateInString != null) formatter.parse(dateInString) else null
     }
 }

@@ -18,10 +18,11 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/tales_grid"
+            fairytaleListData="@{libraryViewModel.tales}"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="6dp"
+            android:layout_height="640dp"
             android:clipToPadding="false"
+            android:padding="6dp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -29,8 +30,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:spanCount="2"
             tools:itemCount="16"
-            tools:listitem="@layout/library_view_item"
-            fairytaleListData="@{libraryViewModel.tales}"/>
+            tools:listitem="@layout/library_view_item" />
 
         <ImageView
             android:id="@+id/status_image"

@@ -29,6 +29,21 @@ interface ApiService {
     suspend fun getTeacherId(@Header("Authorization") token: String) : Int
 
     @GET(Constants.FAIRYTALES_URL)
+    suspend fun getFairyTales(@Query("topCount") topCount: Int, @Header("Authorization") token: String) : List<FairytaleGetResponse>
+
+    @GET(Constants.FAIRYTALES_URL)
+    suspend fun getFairyTales(@Query("psychoType") psychoType: String, @Query("minAge") minAge: Int, @Query("maxAge") maxAge: Int, @Header("Authorization") token: String) : List<FairytaleGetResponse>
+
+    @GET(Constants.FAIRYTALES_URL)
+    suspend fun getFairyTales(@Query("minAge") minAge: Int, @Query("maxAge") maxAge: Int, @Header("Authorization") token: String) : List<FairytaleGetResponse>
+
+    @GET(Constants.FAIRYTALES_URL)
+    suspend fun getFairyTales(@Query("psychoType") psychoType: String, @Query("minAge") minAge: Int, @Query("maxAge") maxAge: Int, @Query("topCount") topCount: Int, @Header("Authorization") token: String) : List<FairytaleGetResponse>
+
+    @GET(Constants.FAIRYTALES_URL)
+    suspend fun getFairyTales(@Query("psychoType") psychoType: String,  @Header("Authorization") token: String) : List<FairytaleGetResponse>
+
+    @GET(Constants.FAIRYTALES_URL)
     suspend fun getFairyTales(@Header("Authorization") token: String) : List<FairytaleGetResponse>
 
     @GET(Constants.UNIT_URL)
@@ -57,6 +72,9 @@ interface ApiService {
 
     @GET(Constants.FAIRYTALE_AWARD)
     suspend fun getFairytaleAward(@Path("fairytaleId") fairytaleId: Int, @Header("Authorization") token: String) : AwardResponse
+
+    @GET(Constants.PSYCHOTYPES_URL)
+    suspend fun getPsychoTypes(@Header("Authorization") token: String) : List<String>
 
     @DELETE(Constants.CHILDREN_URL + Constants.CHILD_ID_URL)
     suspend fun deleteChild(@Path("childId") childId: Int, @Header("Authorization") token: String) : ResponseBody

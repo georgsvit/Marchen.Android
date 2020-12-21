@@ -76,5 +76,18 @@
             app:layout_constraintStart_toEndOf="@+id/reportsBtn"
             app:layout_constraintTop_toBottomOf="@+id/avatar" />
 
+        <TextView
+            android:id="@+id/dobTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{"Date of birth: " +  viewModel.child.DOB}'
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.194"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/surnameTextView"
+            app:layout_constraintVertical_bias="0.165" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
